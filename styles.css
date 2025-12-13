@@ -50,6 +50,35 @@ body {
     gap: 16px;
 }
 
+header {
+    margin-bottom: 128px;
+}
+
+#audio-slider-container {
+    display: flex;
+    flex-direction: column;
+    background: #111;
+    width: 100%;
+    padding: 16px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#audio-slider-controls-timeline {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+#audio-slider-controls-timeline p {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    user-select: none;
+}
+
 #audio-slider {
     width: 100%;
     height: 12px;
