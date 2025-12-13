@@ -64,12 +64,21 @@ header {
     box-sizing: border-box;
 }
 
+#audio-slider-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+#audio-slider-controls-actions button{
+    font-size: 12px;
+}
+
 #audio-slider-controls-timeline {
     display: flex;
-    width: 100%;
     gap: 8px;
     justify-content: center;
-    margin-bottom: 12px;
 }
 
 #audio-slider-controls-timeline p {
