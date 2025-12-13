@@ -60,10 +60,6 @@ body {
     width: 12px;
 }
 
-#audio-slider-container {
-    background: red;
-}
-
 .sub-marker {
     position: absolute;
     background: purple;

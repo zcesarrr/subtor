@@ -52,9 +52,10 @@ class CustomSlider {
 
 // Subtitles Markers
 class SubtitleMarker {
-    constructor(element, time) {
+    constructor(element, time, text) {
         this.element = element;
         this.time = time;
+        this.text = text;
     }
 
     updateElement(targetDuration) {
@@ -70,7 +71,7 @@ const createSubtitleMarker = (slider, time) => {
     
     slider.appendChild(subtitleMarkerElement);
 
-    const object = new SubtitleMarker(subtitleMarkerElement, time);
+    const object = new SubtitleMarker(subtitleMarkerElement, time, "Sample Text");
 
     return object;
 }

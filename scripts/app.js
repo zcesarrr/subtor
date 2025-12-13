@@ -67,3 +67,5 @@ setupWorkspace();
 // Test
 subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, 200));
 subtitleMarkers[0].updateElement(audio.duration);
+subtitleMarkers[0].text = "Hello John.";
+console.log(subtitleMarkers[0]);
