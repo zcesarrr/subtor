@@ -74,13 +74,19 @@ class CustomSlider {
         });
     }
 
-    getPercent(posX = null) {
+    getPositionAtBar(posX = null) {
         const rectSlider = this.slider.getBoundingClientRect();
 
         const currentPosX = posX === null ? this.thumb.getBoundingClientRect().left + this.thumb.getBoundingClientRect().width / 2 : posX;
 
         let x = currentPosX - rectSlider.left;
-        x = Math.max(0, Math.min(x, rectSlider.width));
+        
+        return Math.max(0, Math.min(x, rectSlider.width));
+    }
+
+    getPercent(posX = null) {
+        const rectSlider = this.slider.getBoundingClientRect();
+        const x = this.getPositionAtBar(posX);
 
         return (x / rectSlider.width);
     }
@@ -89,14 +95,13 @@ class CustomSlider {
         const percent = this.getPercent(clientX);
 
         this.thumb.style.left = `${percent * 100}%`;
-        console.log(percent);
     };
 }
 
 const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
 
 document.addEventListener('keydown', () => {
-    console.log(audioSlider.getPercent());
+    console.log(audioSlider.getPositionAtBar());
 });
 
 
