@@ -59,3 +59,18 @@ body {
     height: 24px;
     width: 12px;
 }
+
+#audio-slider-container {
+    background: red;
+}
+
+.sub-marker {
+    position: absolute;
+    background: purple;
+    width: 6px;
+    height: 24px;
+    left: 0;
+    top: 32px;
+    transform: translateX(-50%);
+    pointer-events: none;
+}

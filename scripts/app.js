@@ -8,8 +8,6 @@ const saveButton = document.getElementById("save-button");
 const saveAsButton = document.getElementById("save-as-button");
 const exportButton = document.getElementById("export-button");
 
-let projectOpened = false;
-
 const setupWorkspace = () => {
     if (!projectOpened) {
         projectName.style.display = "none";
@@ -55,55 +53,9 @@ exportButton.addEventListener("click", () => {
 });
 
 
-// Slider
-class CustomSlider {
-    constructor(slider) {
-        this.slider = slider;
-        this.thumb = slider.querySelector(".slider-thumb");
-        this.isDragging = false;
-
-        this.thumb.addEventListener("mousedown", () => this.isDragging = true);
-        document.addEventListener("mouseup", () => this.isDragging = false);
-
-        document.addEventListener("mousemove", (e) => {
-            if (this.isDragging) this.updateThumb(e.clientX);
-        });
-
-        this.slider.addEventListener("click", (e) => {
-            this.updateThumb(e.clientX);
-        });
-    }
-
-    getPositionAtBar(posX = null) {
-        const rectSlider = this.slider.getBoundingClientRect();
-
-        const currentPosX = posX === null ? this.thumb.getBoundingClientRect().left + this.thumb.getBoundingClientRect().width / 2 : posX;
-
-        let x = currentPosX - rectSlider.left;
-        
-        return Math.max(0, Math.min(x, rectSlider.width));
-    }
-
-    getPercent(posX = null) {
-        const rectSlider = this.slider.getBoundingClientRect();
-        const x = this.getPositionAtBar(posX);
-
-        return (x / rectSlider.width);
-    }
-
-    updateThumb(clientX) {
-        const percent = this.getPercent(clientX);
-
-        this.thumb.style.left = `${percent * 100}%`;
-    };
-}
-
-const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
-
-document.addEventListener('keydown', () => {
-    console.log(audioSlider.getPositionAtBar());
-});
+// Global Variables
+let projectOpened = false;
 
 
-// Initialization
+//Initialization
 setupWorkspace();
