@@ -20,7 +20,7 @@ class CustomSlider {
             if (this.isDragging) this.updateThumb(e.clientX);
         });
 
-        this.slider.addEventListener("click", (e) => {
+        this.slider.querySelector(".slider-track").addEventListener("click", (e) => {
             this.updateThumb(e.clientX);
         });
     }
