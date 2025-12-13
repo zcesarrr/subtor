@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple subtitles editor supporting .srt files">
     <title>Subtor</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>WIP</h1>
+    <input type="file" id="load-project-input" accept=".sbtr" style="display: none;">
+
+    <div id="container">
+        <header>
+            <p id="project-name">project_name</p>
+            <ul id="file-actions">
+                <li><button id="new-project-button">New Project</button></li>
+                <li><button id="load-project-button">Load Project</button></li>
+                <li><button id="save-button" disabled>Save</button></li>
+                <li><button id="save-as-button" disabled>Save As</button></li>
+                <li><button id="export-button" disabled>Export</button></li>
+            </ul>
+        </header>
+    </div>
+    
+    <script src="app.js"></script>
 </body>
 </html>
