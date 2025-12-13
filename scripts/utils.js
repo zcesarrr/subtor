@@ -64,23 +64,13 @@ class SubtitleMarker {
     }
 }
 
-const createSubtitleMarker = (time) => {
+const createSubtitleMarker = (slider, time) => {
     const subtitleMarkerElement = document.createElement("div");
     subtitleMarkerElement.className = "sub-marker";
     
-    audioSlider.slider.appendChild(subtitleMarkerElement);
+    slider.appendChild(subtitleMarkerElement);
 
     const object = new SubtitleMarker(subtitleMarkerElement, time);
 
     return object;
 }
-
-
-const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
-
-let subtitleMarkers = [];
-subtitleMarkers.push(createSubtitleMarker());
-
-
-// Test
-audio = new AudioSettings(2500);

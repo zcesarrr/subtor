@@ -55,7 +55,15 @@ exportButton.addEventListener("click", () => {
 
 // Global Variables
 let projectOpened = false;
+const audio = new AudioSettings(2500);
+const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
+let subtitleMarkers = [];
 
 
 //Initialization
 setupWorkspace();
+
+
+// Test
+subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, 200));
+subtitleMarkers[0].updateElement(audio.duration);
