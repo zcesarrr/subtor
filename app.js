@@ -56,33 +56,38 @@ exportButton.addEventListener("click", () => {
 
 
 // Slider
-const audioSlider = document.getElementById("audio-slider");
-const audioSliderThumb = document.getElementById("audio-slider-thumb");
+class CustomSlider {
+    constructor(slider) {
+        this.slider = slider;
+        this.thumb = slider.querySelector(".slider-thumb");
+        this.isDragging = false;
 
-let isDragging = false;
+        this.thumb.addEventListener("mousedown", () => this.isDragging = true);
+        document.addEventListener("mouseup", () => this.isDragging = false);
 
-const updateThumb = (clientX) => {
-    const rect = audioSlider.getBoundingClientRect();
-    let x = clientX - rect.left;
+        document.addEventListener("mousemove", (e) => {
+            if (this.isDragging) this.updateThumb(e.clientX);
+        });
 
-    x = Math.max(0, Math.min(x, rect.width));
-    const percent = x / rect.width;
+        this.slider.addEventListener("click", (e) => {
+            this.updateThumb(e.clientX);
+        });
+    }
 
-    audioSliderThumb.style.left = `${percent * 100}%`;
+    updateThumb(clientX) {
+        const rect = this.slider.getBoundingClientRect();
+        let x = clientX - rect.left;
 
-    console.log(Math.round(percent * 100));
-};
+        x = Math.max(0, Math.min(x, rect.width));
+        const percent = x / rect.width;
 
-audioSliderThumb.addEventListener("mousedown", () => isDragging = true);
-document.addEventListener("mouseup", () => isDragging = false);
+        this.thumb.style.left = `${percent * 100}%`;
 
-document.addEventListener("mousemove", (e) => {
-    if (isDragging) updateThumb(e.clientX);
-});
+        console.log(Math.round(percent * 100));
+    };
+}
 
-audioSlider.addEventListener("click", (e) => {
-    updateThumb(e.clientX);
-});
+const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
 
 
 // Initialization

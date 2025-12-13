@@ -1,22 +1,4 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: #1C1C1C;
-    color: white;
-}
-
-#container {
-    margin: 16px;
-}
-
-#file-actions {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    gap: 16px;
-}
-
+/* vvv Custom Slider Style vvv */
 .slider {
     position: relative;
     background: #ddd;
@@ -45,4 +27,35 @@ body {
 
 .slider-thumb:active {
     cursor: grabbing;
+}
+
+/* ^^^ Custom Slider Style ^^^ */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #1C1C1C;
+    color: white;
+}
+
+#container {
+    margin: 16px;
+}
+
+#file-actions {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 16px;
+}
+
+#audio-slider {
+    width: 100%;
+    height: 12px;
+}
+
+#audio-slider-thumb {
+    height: 24px;
+    width: 12px;
 }
