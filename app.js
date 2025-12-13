@@ -74,20 +74,30 @@ class CustomSlider {
         });
     }
 
-    updateThumb(clientX) {
-        const rect = this.slider.getBoundingClientRect();
-        let x = clientX - rect.left;
+    getPercent(posX = null) {
+        const rectSlider = this.slider.getBoundingClientRect();
 
-        x = Math.max(0, Math.min(x, rect.width));
-        const percent = x / rect.width;
+        const currentPosX = posX === null ? this.thumb.getBoundingClientRect().left + this.thumb.getBoundingClientRect().width / 2 : posX;
+
+        let x = currentPosX - rectSlider.left;
+        x = Math.max(0, Math.min(x, rectSlider.width));
+
+        return (x / rectSlider.width);
+    }
+
+    updateThumb(clientX) {
+        const percent = this.getPercent(clientX);
 
         this.thumb.style.left = `${percent * 100}%`;
-
-        console.log(Math.round(percent * 100));
+        console.log(percent);
     };
 }
 
 const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
+
+document.addEventListener('keydown', () => {
+    console.log(audioSlider.getPercent());
+});
 
 
 // Initialization
