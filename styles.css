@@ -16,3 +16,33 @@ body {
     list-style-type: none;
     gap: 16px;
 }
+
+.slider {
+    position: relative;
+    background: #ddd;
+    width: 300px;
+    height: 6px;
+    cursor: pointer;
+}
+
+.slider-track {
+    position: absolute;
+    background: #ddd;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-thumb {
+    position: absolute;
+    background: red;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+}
+
+.slider-thumb:active {
+    cursor: grabbing;
+}

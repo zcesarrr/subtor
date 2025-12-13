@@ -1,3 +1,4 @@
+// Header and Workspace
 const loadProjectInput = document.getElementById("load-project-input");
 
 const projectName = document.getElementById("project-name");
@@ -27,6 +28,7 @@ const setupWorkspace = () => {
 
 newProjectButton.addEventListener("click", () => {
     projectOpened = true;
+    projectName.textContent = "untitled.sbtr";
 
     setupWorkspace();
 });
@@ -52,4 +54,36 @@ exportButton.addEventListener("click", () => {
     console.log("exported");
 });
 
+
+// Slider
+const audioSlider = document.getElementById("audio-slider");
+const audioSliderThumb = document.getElementById("audio-slider-thumb");
+
+let isDragging = false;
+
+const updateThumb = (clientX) => {
+    const rect = audioSlider.getBoundingClientRect();
+    let x = clientX - rect.left;
+
+    x = Math.max(0, Math.min(x, rect.width));
+    const percent = x / rect.width;
+
+    audioSliderThumb.style.left = `${percent * 100}%`;
+
+    console.log(Math.round(percent * 100));
+};
+
+audioSliderThumb.addEventListener("mousedown", () => isDragging = true);
+document.addEventListener("mouseup", () => isDragging = false);
+
+document.addEventListener("mousemove", (e) => {
+    if (isDragging) updateThumb(e.clientX);
+});
+
+audioSlider.addEventListener("click", (e) => {
+    updateThumb(e.clientX);
+});
+
+
+// Initialization
 setupWorkspace();
