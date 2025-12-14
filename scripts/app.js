@@ -96,9 +96,14 @@ const projectLoaded = () => {
         
         const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (e.target.currentTime * 1000 / audio.duration);
 
-        console.log(e.target.currentTime);
-
         audioSlider.updateThumb(clientX);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key.toLowerCase() === "e") {
+            subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
+            subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
+        }
     });
 };
 
@@ -109,7 +114,6 @@ let audio;
 const audioSlider = new CustomSlider(document.getElementById("audio-slider"), (percent) => {
     document.getElementById("audio-current").textContent = getMsToFormat(audio.duration * percent);
 }, (percent) => {
-    console.log("g");
     audio.element.currentTime = audio.duration / 1000 * percent;
 });
 let subtitleMarkers = [];
