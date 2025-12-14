@@ -137,24 +137,26 @@ const createSubtitleMarker = (slider, start, end) => {
 
 // Sync Subtitle Markers
 const subtitlesMarkersToList = (subtitleMarkers) => {
+    const subtitleMarkersSorted = [...subtitleMarkers].sort((a, b) => a.start - b.start);
+
     const subMarkersList = document.getElementById("subtitles-markers-list");
 
     while (subMarkersList.firstChild) {
         subMarkersList.removeChild(subMarkersList.firstChild);
     }
 
-    for (let i = 0; i < subtitleMarkers.length; i++) {
+    for (let i = 0; i < subtitleMarkersSorted.length; i++) {
         const subMarkerItem = document.createElement("li");
         subMarkerItem.className = "list-subtitle";
-        subMarkerItem.id = `list-subtitle-${subtitleMarkers[i].id}`
+        subMarkerItem.id = `list-subtitle-${subtitleMarkersSorted[i].id}`
         subMarkerItem.innerHTML = `
             <p class="list-subtitle-count">${i + 1}</p>
             <p>:</p>
-            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkers[i].start)}</p>
+            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkersSorted[i].start)}</p>
             <p>-</p>
-            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkers[i].end)}</p>
+            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkersSorted[i].end)}</p>
             <p>:</p>
-            <p class="list-subtitle-text">${subtitleMarkers[i].text}</p>
+            <p class="list-subtitle-text">${subtitleMarkersSorted[i].text}</p>
         `;
 
         subMarkersList.appendChild(subMarkerItem);

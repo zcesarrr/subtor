@@ -81,7 +81,7 @@ exportButton.addEventListener("click", () => {
 });
 
 function addSubMarker() {
-    if (subtitleMarkers.find(sub => sub.time === audio.element.currentTime * 1000)) {
+    if (subtitleMarkers.find(sub => sub.start === audio.element.currentTime * 1000)) {
         console.error("The subtitles markers can not be on the same position");
         return;
     }
