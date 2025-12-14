@@ -127,10 +127,25 @@ header {
 }
 
 #subtitles-markers-container {
+    display: grid;
+    grid-template-columns: 60% auto;
+    gap: 12px;
     background: #111;
     margin-bottom: 12px;
     max-height: 300px;
     overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#subtitles-markers-controls {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#text-editor {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #subtitles-markers-list {
@@ -153,8 +168,17 @@ header {
 
 .list-subtitle-timer {
     cursor: pointer;
+    height: 100%;
 }
 
 .list-subtitle-text {
     cursor: pointer;
+}
+
+.list-subtitle-active {
+    background: rgb(27, 27, 27);
+}
+
+#subtitles-markers-controls label{
+    font-size: 16px;
 }
