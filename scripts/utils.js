@@ -96,6 +96,7 @@ class CustomSlider {
 // Subtitles Markers
 class SubtitleMarker {
     constructor(element, start, end, text) {
+        this.id = crypto.randomUUID();
         this.element = element;
         this.start = start;
         this.end = end;
@@ -121,14 +122,41 @@ class SubtitleMarker {
     }
 }
 
-const createSubtitleMarker = (slider, time) => {
+const createSubtitleMarker = (slider, start, end) => {
     const subtitleMarkerElement = document.createElement("div");
     subtitleMarkerElement.className = "sub-marker";
     subtitleMarkerElement.classList.add("sub-marker-unfinished");
     
     slider.appendChild(subtitleMarkerElement);
 
-    const object = new SubtitleMarker(subtitleMarkerElement, time, "Sample Text");
+    const object = new SubtitleMarker(subtitleMarkerElement, start, end, "Sample Text");
 
     return object;
+}
+
+
+// Sync Subtitle Markers
+const subtitlesMarkersToList = (subtitleMarkers) => {
+    const subMarkersList = document.getElementById("subtitles-markers-list");
+
+    while (subMarkersList.firstChild) {
+        subMarkersList.removeChild(subMarkersList.firstChild);
+    }
+
+    for (let i = 0; i < subtitleMarkers.length; i++) {
+        const subMarkerItem = document.createElement("li");
+        subMarkerItem.className = "list-subtitle";
+        subMarkerItem.id = `list-subtitle-${subtitleMarkers[i].id}`
+        subMarkerItem.innerHTML = `
+            <p class="list-subtitle-count">${i + 1}</p>
+            <p>:</p>
+            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkers[i].start)}</p>
+            <p>-</p>
+            <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkers[i].end)}</p>
+            <p>:</p>
+            <p class="list-subtitle-text">${subtitleMarkers[i].text}</p>
+        `;
+
+        subMarkersList.appendChild(subMarkerItem);
+    }
 }

@@ -166,9 +166,14 @@ header {
     padding: 0;
 }
 
+.list-subtitle-count {
+    color: gray;
+}
+
 .list-subtitle-timer {
     cursor: pointer;
     height: 100%;
+    color: #bebebe;
 }
 
 .list-subtitle-text {

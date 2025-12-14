@@ -90,6 +90,8 @@ function addSubMarker() {
     subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, startTime, startTime))
     subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
     subtitleMarkers[subtitleMarkers.length - 1].active();
+
+    subtitlesMarkersToList(subtitleMarkers);
 }
 
 function playPauseAudio() {
