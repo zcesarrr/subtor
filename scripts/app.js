@@ -109,6 +109,7 @@ const projectLoaded = () => {
     for (let i = 0; i < currentMarkersElements.length; i++) {
         currentMarkersElements[i].remove();
     }
+    subtitlesMarkersToList(subtitleMarkers);
 
     addSubMarkerButton.removeEventListener("click", addSubMarker);
 
