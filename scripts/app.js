@@ -1,5 +1,6 @@
 // Header and Workspace
 const loadProjectInput = document.getElementById("load-project-input");
+const loadSongInput = document.getElementById("load-song-input");
 
 const projectName = document.getElementById("project-name");
 const newProjectButton = document.getElementById("new-project-button");
@@ -25,10 +26,32 @@ const setupWorkspace = () => {
 };
 
 newProjectButton.addEventListener("click", () => {
-    projectOpened = true;
-    projectName.textContent = "untitled.sbtr";
+    loadSongInput.click();
+});
 
-    setupWorkspace();
+loadSongInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    console.log (file);
+
+    if (file) {
+        const fileURL = URL.createObjectURL(file);
+        const audioLoaded = document.createElement('audio');
+
+        audioLoaded.addEventListener("loadedmetadata", () => {
+            const duration = Math.round(audioLoaded.duration * 1000);
+
+            audio.duration = duration;
+
+            projectName.textContent = "untitled.sbtr";
+
+            projectLoaded();
+
+            URL.revokeObjectURL(fileURL);
+        });
+
+        audioLoaded.src = fileURL;
+        audioLoaded.preload = 'metadata';
+    }
 });
 
 loadProjectButton.addEventListener("click", () => {
@@ -36,8 +59,8 @@ loadProjectButton.addEventListener("click", () => {
 });
 
 loadProjectInput.addEventListener("change", (e) => {
-    const files = e.target.files;
-    console.log (files);
+    const file = e.target.files[0];
+    console.log (file);
 });
 
 saveButton.addEventListener("click", () => {
@@ -51,6 +74,12 @@ saveAsButton.addEventListener("click", () => {
 exportButton.addEventListener("click", () => {
     console.log("exported");
 });
+
+
+const projectLoaded = () => {
+    projectOpened = true;
+    setupWorkspace();
+};
 
 
 // Global Variables
