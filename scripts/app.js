@@ -92,6 +92,7 @@ function addSubMarker() {
     subtitleMarkers[subtitleMarkers.length - 1].active();
 
     subtitlesMarkersToList(subtitleMarkers);
+    activeSubtitleListElement(subtitleMarkers[subtitleMarkers.length - 1].id);
 }
 
 function playPauseAudio() {

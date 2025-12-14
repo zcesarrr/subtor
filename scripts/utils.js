@@ -161,4 +161,15 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
 
         subMarkersList.appendChild(subMarkerItem);
     }
-}
+};
+
+const activeSubtitleListElement = (id) => {
+    const subMarkersList = document.getElementById("subtitles-markers-list");
+
+    for (let i = 0; i < subMarkersList.length; i++) {
+        subMarkersList.children[i].classList.remove("list-subtitle-active");
+    }
+
+    const selected = document.getElementById(`list-subtitle-${id}`);
+    selected.classList.add("list-subtitle-active");
+};
