@@ -103,6 +103,7 @@ class SubtitleMarker {
 const createSubtitleMarker = (slider, time) => {
     const subtitleMarkerElement = document.createElement("div");
     subtitleMarkerElement.className = "sub-marker";
+    subtitleMarkerElement.classList.add("sub-marker-unfinished");
     
     slider.appendChild(subtitleMarkerElement);
 

@@ -100,10 +100,14 @@ header {
 
 .sub-marker {
     position: absolute;
-    background: purple;
+    background: greenyellow;
     width: 6px;
     height: 24px;
     left: 0;
     top: 32px;
     transform: translateX(-50%);
+}
+
+.sub-marker-unfinished {
+    background: orange;
 }
