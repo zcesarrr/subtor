@@ -129,6 +129,8 @@ header {
 #subtitles-markers-container {
     background: #111;
     margin-bottom: 12px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 #subtitles-markers-list {
@@ -140,10 +142,19 @@ header {
 #subtitles-markers-list li {
     display: flex;
     gap: 6px;
+    margin-bottom: 6px;
 }
 
 #subtitles-markers-list li p {
     font-size: 12px;
     margin: 0;
     padding: 0;
+}
+
+.list-subtitle-timer {
+    cursor: pointer;
+}
+
+.list-subtitle-text {
+    cursor: pointer;
 }
