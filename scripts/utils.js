@@ -1,12 +1,13 @@
 // AudioSettings
 class AudioSettings {
-    constructor(duration) {
+    constructor(element, duration) {
+        this.element = element;
         this.duration = duration;
     }
 }
 
 const getMsToFormat = (time) => {
-    const ms = time % 1000;
+    const ms = Math.floor(time) % 1000;
     const seconds = Math.floor(time / 1000) % 60
     const minutes = Math.floor(time / 60000) % 60
     const hours = Math.floor(time / (60 * 60000));
@@ -17,10 +18,13 @@ const getMsToFormat = (time) => {
 
 // Slider
 class CustomSlider {
-    constructor(slider) {
+    #onUpdate;
+    
+    constructor(slider, onUpdate) {
         this.slider = slider;
         this.thumb = slider.querySelector(".slider-thumb");
         this.isDragging = false;
+        this.#onUpdate = onUpdate;
 
         this.thumb.addEventListener("mousedown", () => this.isDragging = true);
         document.addEventListener("mouseup", () => this.isDragging = false);
@@ -55,6 +59,7 @@ class CustomSlider {
         const percent = this.getPercent(clientX);
 
         this.thumb.style.left = `${percent * 100}%`;
+        this.#onUpdate(percent);
     };
 }
 

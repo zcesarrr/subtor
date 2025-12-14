@@ -40,7 +40,7 @@ loadSongInput.addEventListener("change", (e) => {
         audioLoaded.addEventListener("loadedmetadata", () => {
             const duration = Math.round(audioLoaded.duration * 1000);
 
-            audio.duration = duration;
+            audio = new AudioSettings(audioLoaded, duration);
 
             projectName.textContent = "untitled.sbtr";
 
@@ -81,24 +81,32 @@ const projectLoaded = () => {
     setupWorkspace();
 
     const endDuration = getMsToFormat(audio.duration);
-
     document.getElementById("audio-end").textContent = endDuration;
+
+    document.getElementById("audio-playplause-button").addEventListener("click", () => {
+        if (audio.element.paused) {
+            audio.element.play()
+        } else {
+            audio.element.pause();
+        }
+    });
 };
 
 
 // Global Variables
 let projectOpened = false;
-const audio = new AudioSettings(2500);
-const audioSlider = new CustomSlider(document.getElementById("audio-slider"));
+let audio;
+const audioSlider = new CustomSlider(document.getElementById("audio-slider"), (percent) => {
+    document.getElementById("audio-current").textContent = getMsToFormat(audio.duration * percent);
+});
 let subtitleMarkers = [];
-
 
 //Initialization
 setupWorkspace();
 
 
 // Test
-subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, 200));
+/*subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, 200));
 subtitleMarkers[0].updateElement(audio.duration);
 subtitleMarkers[0].text = "Hello John.";
-console.log(subtitleMarkers[0]);
+console.log(subtitleMarkers[0]);*/
