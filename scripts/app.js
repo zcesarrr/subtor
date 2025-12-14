@@ -86,7 +86,8 @@ function addSubMarker() {
         return;
     }
 
-    subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
+    const startTime = audio.element.currentTime * 1000;
+    subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, startTime, startTime))
     subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
     subtitleMarkers[subtitleMarkers.length - 1].active();
 }

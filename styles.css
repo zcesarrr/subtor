@@ -4,6 +4,7 @@
     background: #ddd;
     width: 300px;
     height: 6px;
+    user-select: none;
 }
 
 .slider-track {
@@ -60,6 +61,7 @@ header {
     padding: 16px;
     align-items: center;
     box-sizing: border-box;
+    user-select: none;
 }
 
 #audio-slider-controls {
@@ -132,6 +134,7 @@ header {
     gap: 12px;
     background: #111;
     margin-bottom: 12px;
+    min-height: 300px;
     max-height: 300px;
     box-sizing: border-box;
     padding: 12px;

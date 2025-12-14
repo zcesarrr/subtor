@@ -95,9 +95,10 @@ class CustomSlider {
 
 // Subtitles Markers
 class SubtitleMarker {
-    constructor(element, time, text) {
+    constructor(element, start, end, text) {
         this.element = element;
-        this.time = time;
+        this.start = start;
+        this.end = end;
         this.text = text;
 
         this.element.addEventListener("click", () => {
@@ -106,7 +107,7 @@ class SubtitleMarker {
     }
 
     updateElement(targetDuration) {
-        const percent = this.time / targetDuration;
+        const percent = this.start / targetDuration;
 
         this.element.style.left = `${percent * 100}%`;
     }
