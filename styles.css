@@ -133,7 +133,6 @@ header {
     background: #111;
     margin-bottom: 12px;
     max-height: 300px;
-    overflow-y: auto;
     box-sizing: border-box;
     padding: 12px;
 }
@@ -148,6 +147,8 @@ header {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    overflow-y: auto;
+    max-height: 276px;
 }
 
 #subtitles-markers-list li {
@@ -183,4 +184,9 @@ header {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 12px;
+}
+
+#timers-controls {
+    display: flex;
+    gap: 8px;
 }
