@@ -135,16 +135,12 @@ header {
     max-height: 300px;
     overflow-y: auto;
     box-sizing: border-box;
+    padding: 12px;
 }
 
 #subtitles-markers-controls {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-}
-
-#text-editor {
-    width: 100%;
     box-sizing: border-box;
 }
 
@@ -176,9 +172,15 @@ header {
 }
 
 .list-subtitle-active {
-    background: rgb(27, 27, 27);
+    background: rgb(48, 46, 46);
 }
 
-#subtitles-markers-controls label{
-    font-size: 16px;
+.subtitle-control label{
+    font-size: 14px;
+}
+
+.subtitle-control input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
 }
