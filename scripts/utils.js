@@ -82,6 +82,14 @@ class CustomSlider {
         this.thumb.style.left = `${percent * 100}%`;
         this.#onUpdate(percent);
     };
+
+    enable() {
+        this.slider.style.pointerEvents = "all"
+    }
+
+    disable() {
+        this.slider.style.pointerEvents = "none"
+    }
 }
 
 

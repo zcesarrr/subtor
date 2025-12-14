@@ -9,6 +9,8 @@ const saveButton = document.getElementById("save-button");
 const saveAsButton = document.getElementById("save-as-button");
 const exportButton = document.getElementById("export-button");
 
+const audioPlayPauseButton = document.getElementById("audio-playplause-button");
+
 const setupWorkspace = () => {
     if (!projectOpened) {
         projectName.style.display = "none";
@@ -83,13 +85,15 @@ const projectLoaded = () => {
     const endDuration = getMsToFormat(audio.duration);
     document.getElementById("audio-end").textContent = endDuration;
 
-    document.getElementById("audio-playplause-button").addEventListener("click", () => {
+    audioPlayPauseButton.addEventListener("click", () => {
         if (audio.element.paused) {
             audio.element.play()
         } else {
             audio.element.pause();
         }
     });
+
+    audioPlayPauseButton.disabled = false;
 
     audio.element.addEventListener('timeupdate', (e) => {
         if (e.target.paused) return;
@@ -101,10 +105,17 @@ const projectLoaded = () => {
 
     document.addEventListener("keydown", (e) => {
         if (e.key.toLowerCase() === "e") {
+            if (subtitleMarkers.find(sub => sub.time === audio.element.currentTime * 1000)) {
+                console.error("The subtitles markers can not be on the same position");
+                return;
+            }
+
             subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
             subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
         }
     });
+
+    audioSlider.enable();
 };
 
 
@@ -116,14 +127,9 @@ const audioSlider = new CustomSlider(document.getElementById("audio-slider"), (p
 }, (percent) => {
     audio.element.currentTime = audio.duration / 1000 * percent;
 });
+audioSlider.disable();
 let subtitleMarkers = [];
 
 //Initialization
+audioPlayPauseButton.disabled = true;
 setupWorkspace();
-
-
-// Test
-/*subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, 200));
-subtitleMarkers[0].updateElement(audio.duration);
-subtitleMarkers[0].text = "Hello John.";
-console.log(subtitleMarkers[0]);*/
