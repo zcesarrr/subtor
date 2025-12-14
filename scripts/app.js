@@ -89,10 +89,9 @@ function addSubMarker() {
     const startTime = audio.element.currentTime * 1000;
     subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, startTime, startTime))
     subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
-    subtitleMarkers[subtitleMarkers.length - 1].active();
-
+    
     subtitlesMarkersToList(subtitleMarkers);
-    activeSubtitleListElement(subtitleMarkers[subtitleMarkers.length - 1].id);
+    subtitleMarkers[subtitleMarkers.length - 1].active();
 }
 
 function playPauseAudio() {

@@ -119,6 +119,8 @@ class SubtitleMarker {
             others[i].classList.remove("sub-marker-active");
         }
         this.element.classList.add("sub-marker-active");
+
+        activeSubtitleListElement(this.id);
     }
 }
 
@@ -159,6 +161,10 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
             <p class="list-subtitle-text">${subtitleMarkersSorted[i].text}</p>
         `;
 
+        subMarkerItem.addEventListener("click", () => {
+            subtitleMarkers.find(sub => sub.id === subtitleMarkersSorted[i].id).active();
+        });
+
         subMarkersList.appendChild(subMarkerItem);
     }
 };
@@ -166,7 +172,7 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
 const activeSubtitleListElement = (id) => {
     const subMarkersList = document.getElementById("subtitles-markers-list");
 
-    for (let i = 0; i < subMarkersList.length; i++) {
+    for (let i = 0; i < subMarkersList.childElementCount; i++) {
         subMarkersList.children[i].classList.remove("list-subtitle-active");
     }
 
