@@ -92,9 +92,11 @@ const projectLoaded = () => {
     });
 
     audio.element.addEventListener('timeupdate', (e) => {
+        if (e.target.paused) return;
+        
         const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (e.target.currentTime * 1000 / audio.duration);
 
-        console.log(clientX);
+        console.log(e.target.currentTime);
 
         audioSlider.updateThumb(clientX);
     });
@@ -106,6 +108,9 @@ let projectOpened = false;
 let audio;
 const audioSlider = new CustomSlider(document.getElementById("audio-slider"), (percent) => {
     document.getElementById("audio-current").textContent = getMsToFormat(audio.duration * percent);
+}, (percent) => {
+    console.log("g");
+    audio.element.currentTime = audio.duration / 1000 * percent;
 });
 let subtitleMarkers = [];
 

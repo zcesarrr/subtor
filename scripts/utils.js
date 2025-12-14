@@ -19,22 +19,31 @@ const getMsToFormat = (time) => {
 // Slider
 class CustomSlider {
     #onUpdate;
+    #onMove;
     
-    constructor(slider, onUpdate) {
+    constructor(slider, onUpdate, onMove) {
         this.slider = slider;
         this.thumb = slider.querySelector(".slider-thumb");
         this.isDragging = false;
         this.#onUpdate = onUpdate;
+        this.#onMove = onMove;
 
-        this.thumb.addEventListener("mousedown", () => this.isDragging = true);
+        this.thumb.addEventListener("mousedown", () => {
+            this.isDragging = true;
+        });
+
         document.addEventListener("mouseup", () => this.isDragging = false);
 
         document.addEventListener("mousemove", (e) => {
-            if (this.isDragging) this.updateThumb(e.clientX);
+            if (this.isDragging) {
+                this.updateThumb(e.clientX);
+                this.#onMove(this.getPercent());
+            }
         });
 
         this.slider.querySelector(".slider-track").addEventListener("click", (e) => {
             this.updateThumb(e.clientX);
+            this.#onMove(this.getPercent());
         });
     }
 
