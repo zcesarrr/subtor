@@ -38,6 +38,18 @@ class CustomSlider {
         });
     }
 
+    getSliderWidth() {
+        const rect = this.slider.getBoundingClientRect();
+
+        return rect.width;
+    }
+
+    getSliderOffset() {
+        const rect = this.slider.getBoundingClientRect();
+
+        return rect.left;
+    }
+
     getPositionAtBar(posX = null) {
         const rectSlider = this.slider.getBoundingClientRect();
 

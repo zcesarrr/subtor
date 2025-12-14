@@ -90,6 +90,14 @@ const projectLoaded = () => {
             audio.element.pause();
         }
     });
+
+    audio.element.addEventListener('timeupdate', (e) => {
+        const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (e.target.currentTime * 1000 / audio.duration);
+
+        console.log(clientX);
+
+        audioSlider.updateThumb(clientX);
+    });
 };
 
 
