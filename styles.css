@@ -96,6 +96,17 @@ header {
     width: 12px;
 }
 
+#guide-thumb {
+    position: absolute;
+    background: rgba(155, 210, 255, 0.25);
+    height: 48px;
+    width: 2px;
+    z-index: -999;
+    top: 36px;
+    left: 50%;
+    pointer-events: none;
+}
+
 .sub-marker {
     position: absolute;
     background: greenyellow;
