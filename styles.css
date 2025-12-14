@@ -55,8 +55,6 @@ header {
 }
 
 #audio-slider-container {
-    display: flex;
-    flex-direction: column;
     background: #111;
     width: 100%;
     padding: 16px;
@@ -106,8 +104,13 @@ header {
     left: 0;
     top: 32px;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .sub-marker-unfinished {
     background: orange;
+}
+
+.sub-marker-active {
+    background: white;
 }

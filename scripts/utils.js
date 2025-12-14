@@ -99,12 +99,24 @@ class SubtitleMarker {
         this.element = element;
         this.time = time;
         this.text = text;
+
+        this.element.addEventListener("click", () => {
+            this.active();
+        });
     }
 
     updateElement(targetDuration) {
         const percent = this.time / targetDuration;
 
         this.element.style.left = `${percent * 100}%`;
+    }
+
+    active() {
+        const others = document.getElementsByClassName("sub-marker-active");
+        for (let i = 0; i < others.length; i++) {
+            others[i].classList.remove("sub-marker-active");
+        }
+        this.element.classList.add("sub-marker-active");
     }
 }
 

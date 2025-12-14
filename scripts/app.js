@@ -33,6 +33,8 @@ newProjectButton.addEventListener("click", () => {
 });
 
 loadSongInput.addEventListener("change", (e) => {
+    if (audio) audio.element.pause();
+
     const file = e.target.files[0];
     console.log (file);
 
@@ -86,6 +88,15 @@ function addSubMarker() {
 
     subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
     subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
+    subtitleMarkers[subtitleMarkers.length - 1].active();
+}
+
+function playPauseAudio() {
+    if (audio.element.paused) {
+        audio.element.play()
+    } else {
+        audio.element.pause();
+    }
 }
 
 const projectLoaded = () => {
@@ -104,15 +115,8 @@ const projectLoaded = () => {
     const endDuration = getMsToFormat(audio.duration);
     document.getElementById("audio-end").textContent = endDuration;
 
-    audioPlayPauseButton.addEventListener("click", () => {
-        if (audio.element.paused) {
-            audio.element.play()
-        } else {
-            audio.element.pause();
-        }
-    });
-
     audioPlayPauseButton.disabled = false;
+    audioPlayPauseButton.addEventListener("click", playPauseAudio);
 
     audio.element.addEventListener('timeupdate', (e) => {
         if (e.target.paused) return;
