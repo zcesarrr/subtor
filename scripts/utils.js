@@ -5,6 +5,15 @@ class AudioSettings {
     }
 }
 
+const getMsToFormat = (time) => {
+    const ms = time % 1000;
+    const seconds = Math.floor(time / 1000) % 60
+    const minutes = Math.floor(time / 60000) % 60
+    const hours = Math.floor(time / (60 * 60000));
+
+    return`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")},${String(ms).padStart(3, "0")}`;
+};
+
 
 // Slider
 class CustomSlider {

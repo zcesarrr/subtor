@@ -79,6 +79,10 @@ exportButton.addEventListener("click", () => {
 const projectLoaded = () => {
     projectOpened = true;
     setupWorkspace();
+
+    const endDuration = getMsToFormat(audio.duration);
+
+    document.getElementById("audio-end").textContent = endDuration;
 };
 
 
