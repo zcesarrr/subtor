@@ -125,3 +125,25 @@ header {
 .sub-marker-active {
     background: white;
 }
+
+#subtitles-markers-container {
+    background: #111;
+    margin-bottom: 12px;
+}
+
+#subtitles-markers-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#subtitles-markers-list li {
+    display: flex;
+    gap: 6px;
+}
+
+#subtitles-markers-list li p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
