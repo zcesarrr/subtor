@@ -10,6 +10,7 @@ const saveAsButton = document.getElementById("save-as-button");
 const exportButton = document.getElementById("export-button");
 
 const audioPlayPauseButton = document.getElementById("audio-playplause-button");
+const addSubMarkerButton = document.getElementById("add-sub-marker-button");
 
 const setupWorkspace = () => {
     if (!projectOpened) {
@@ -79,6 +80,13 @@ exportButton.addEventListener("click", () => {
 
 
 const projectLoaded = () => {
+    subtitleMarkers = [];
+    audioSlider.updateThumb(0);
+    const currentMarkersElements = document.querySelectorAll(".sub-marker");
+    for (let i = 0; i < currentMarkersElements.length; i++) {
+        currentMarkersElements[i].remove();
+    }
+
     projectOpened = true;
     setupWorkspace();
 
@@ -103,16 +111,15 @@ const projectLoaded = () => {
         audioSlider.updateThumb(clientX);
     });
 
-    document.addEventListener("keydown", (e) => {
-        if (e.key.toLowerCase() === "e") {
-            if (subtitleMarkers.find(sub => sub.time === audio.element.currentTime * 1000)) {
-                console.error("The subtitles markers can not be on the same position");
-                return;
-            }
-
-            subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
-            subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
+    addSubMarkerButton.disabled = false;
+    addSubMarkerButton.addEventListener("click", () => {
+        if (subtitleMarkers.find(sub => sub.time === audio.element.currentTime * 1000)) {
+            console.error("The subtitles markers can not be on the same position");
+            return;
         }
+
+        subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, audio.element.currentTime * 1000))
+        subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
     });
 
     audioSlider.enable();
