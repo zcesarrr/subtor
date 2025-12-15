@@ -208,6 +208,7 @@ header {
     margin-top: 48px;
     text-align: center;
     padding: 8px;
+    opacity: 0%;
 }
 
 #subtitle-viewer-text {

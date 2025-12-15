@@ -104,6 +104,8 @@ function playPauseAudio() {
 
 const subtitleViewerText = document.getElementById("subtitle-viewer-text");
 
+let currentText = "";
+
 const projectLoaded = () => {
     subtitleMarkers = [];
     audioSlider.updateThumb(0);
@@ -114,6 +116,12 @@ const projectLoaded = () => {
     subtitlesMarkersToList(subtitleMarkers);
 
     addSubMarkerButton.removeEventListener("click", addSubMarker);
+
+    if (subtitleViewerText.parentElement.style.opacity !== "0%") {
+        subtitleViewerText.parentElement.style.opacity = "0%";
+
+        currentText = "";
+    }
 
     projectOpened = true;
     setupWorkspace();
@@ -141,7 +149,20 @@ const projectLoaded = () => {
             })
 
             if (selectedSub) {
-                console.log(selectedSub);
+                if (currentText != selectedSub.text) {
+                    currentText = selectedSub.text;
+                    subtitleViewerText.textContent = currentText;
+
+                    if (subtitleViewerText.parentElement.style.opacity !== "100%") {
+                        subtitleViewerText.parentElement.style.opacity = "100%";
+                    }
+                }
+            } else {
+                if (subtitleViewerText.parentElement.style.opacity !== "0%") {
+                    subtitleViewerText.parentElement.style.opacity = "0%";
+
+                    currentText = "";
+                }
             }
         }
     });
