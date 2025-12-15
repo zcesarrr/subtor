@@ -185,4 +185,10 @@ const activeSubtitleListElement = (id) => {
     startInput.disabled = false;
     endInput.disabled = false;
     textEditor.disabled = false;
+
+    const timersElement = selected.querySelectorAll(".list-subtitle-timer");
+
+    startInput.value = timersElement[0].textContent || "";
+    endInput.value = timersElement[1].textContent || "";
+    textEditor.value = selected.querySelector(".list-subtitle-text").textContent || "";
 };
