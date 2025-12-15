@@ -187,6 +187,7 @@ saveSubtitleButton.addEventListener("click", () => {
     
     subtitlesMarkersToList(subtitleMarkers);
     selected.active();
+    selected.updateElement(audio.duration);
 });
 
 audioPlayPauseButton.disabled = true;
