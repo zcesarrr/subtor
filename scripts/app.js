@@ -80,18 +80,24 @@ exportButton.addEventListener("click", () => {
     console.log("exported");
 });
 
-function addSubMarker() {
-    if (subtitleMarkers.find(sub => sub.start === audio.element.currentTime * 1000)) {
+function canPutMarker() {
+    const currentTime = audio.element.currentTime * 1000;
+
+    if (subtitleMarkers.find(sub => sub.start === currentTime)) {
         console.error("The subtitles markers can not be on the same position");
-        return;
+        return false;
     }
 
-    const currentAudioTime = audio.element.currentTime * 1000;
-
-    if (subtitleMarkers.find(sub => sub.start < currentAudioTime && sub.end > currentAudioTime)) {
+    if (subtitleMarkers.find(sub => sub.start < currentTime && sub.end > currentTime)) {
         console.error("The subtitles markers can not be between other markers.");
-        return;
+        return false;
     }
+
+    return true
+}
+
+function addSubMarker() {
+    if (!canPutMarker()) return;
 
     const startTime = audio.element.currentTime * 1000;
     subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, startTime, startTime))
@@ -246,6 +252,24 @@ document.addEventListener("keydown", (e) => {
         const subMarkerSelected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
 
         if (subMarkerSelected) {
+            const hasCollision = subtitleMarkers.find(sub => {
+                if (sub !== subMarkerSelected) {
+                    const newStart = subMarkerSelected.start + force;
+                    const newEnd = subMarkerSelected.end + force;
+                    
+                    if ((newStart >= sub.start && newStart < sub.end) || 
+                        (newEnd > sub.start && newEnd <= sub.end) ||
+                        (newStart <= sub.start && newEnd >= sub.end)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            if (hasCollision) {
+                return console.log("The selected subtitle marker cannot be moved forward.");
+            }
+
             subMarkerSelected.start += force;
             subMarkerSelected.end += force;
 
@@ -261,8 +285,6 @@ document.addEventListener("keydown", (e) => {
         audio.element.currentTime += forceReal;
 
         const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (audio.element.currentTime * 1000 / audio.duration);
-
-        console.log(clientX);
 
         audioSlider.updateThumb(clientX);
     }
