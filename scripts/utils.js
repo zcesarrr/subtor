@@ -197,6 +197,22 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
     }
 
     for (let i = 0; i < subtitleMarkersSorted.length; i++) {
+        if (subtitleMarkersSorted[i].text) {
+            if (subtitleMarkersSorted[i].text.trim("").length > 0) {
+                if (subtitleMarkersSorted[i].element.classList.contains("sub-marker-unfinished")) {
+                    subtitleMarkersSorted[i].element.classList.remove("sub-marker-unfinished");
+                }
+            } else {
+                if (!subtitleMarkersSorted[i].element.classList.contains("sub-marker-unfinished")) {
+                    subtitleMarkersSorted[i].element.classList.add("sub-marker-unfinished");
+                }
+            }
+        } else {
+            if (!subtitleMarkersSorted[i].element.classList.contains("sub-marker-unfinished")) {
+                subtitleMarkersSorted[i].element.classList.add("sub-marker-unfinished");
+            }
+        }
+
         const subMarkerItem = document.createElement("li");
         subMarkerItem.className = "list-subtitle";
         subMarkerItem.id = `list-subtitle-${subtitleMarkersSorted[i].id}`

@@ -163,6 +163,8 @@ saveSubtitleButton.addEventListener("click", () => {
     const start = formatToMs(startInput.value);
     const end = formatToMs(endInput.value);
 
+    if (end < start) return console.error("The end time can not be lower than the start time");
+
     selected.start = start;
     selected.end = end;
     selected.text = textEditor.value;
