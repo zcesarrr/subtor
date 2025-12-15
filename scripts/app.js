@@ -105,6 +105,42 @@ function playPauseAudio() {
 const subtitleViewerText = document.getElementById("subtitle-viewer-text");
 
 let currentText = "";
+const checkInterval = setInterval(() => {
+    if (!projectOpened) return;
+
+    if (audio.element.paused) return;
+        
+    const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (audio.element.currentTime * 1000 / audio.duration);
+
+    audioSlider.updateThumb(clientX);
+
+    if (subtitleMarkers.length > 0) {
+        const selectedSub = subtitleMarkers.find(sub => {
+            if (sub.text) {
+                if (sub.start < audio.element.currentTime * 1000 && sub.end > audio.element.currentTime * 1000 && sub.text.trim("").length > 0) {
+                    return sub;
+                }
+            }
+        })
+
+        if (selectedSub) {
+            if (currentText != selectedSub.text) {
+                currentText = selectedSub.text;
+                subtitleViewerText.textContent = currentText;
+
+                if (subtitleViewerText.parentElement.style.opacity !== "100%") {
+                    subtitleViewerText.parentElement.style.opacity = "100%";
+                }
+            }
+        } else {
+            if (subtitleViewerText.parentElement.style.opacity !== "0%") {
+                subtitleViewerText.parentElement.style.opacity = "0%";
+
+                currentText = "";
+            }
+        }
+    }
+}, 25);
 
 const projectLoaded = () => {
     subtitleMarkers = [];
@@ -133,38 +169,7 @@ const projectLoaded = () => {
     audioPlayPauseButton.addEventListener("click", playPauseAudio);
 
     audio.element.addEventListener('timeupdate', (e) => {
-        if (e.target.paused) return;
         
-        const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (e.target.currentTime * 1000 / audio.duration);
-
-        audioSlider.updateThumb(clientX);
-
-        if (subtitleMarkers.length > 0) {
-            const selectedSub = subtitleMarkers.find(sub => {
-                if (sub.text) {
-                    if (sub.start < e.target.currentTime * 1000 && sub.end > e.target.currentTime * 1000 && sub.text.trim("").length > 0) {
-                        return sub;
-                    }
-                }
-            })
-
-            if (selectedSub) {
-                if (currentText != selectedSub.text) {
-                    currentText = selectedSub.text;
-                    subtitleViewerText.textContent = currentText;
-
-                    if (subtitleViewerText.parentElement.style.opacity !== "100%") {
-                        subtitleViewerText.parentElement.style.opacity = "100%";
-                    }
-                }
-            } else {
-                if (subtitleViewerText.parentElement.style.opacity !== "0%") {
-                    subtitleViewerText.parentElement.style.opacity = "0%";
-
-                    currentText = "";
-                }
-            }
-        }
     });
 
     addSubMarkerButton.disabled = false;
