@@ -224,6 +224,10 @@ let shiftHold = false;
 document.addEventListener("keydown", (e) => {
     if (!projectOpened) return;
 
+    if (document.activeElement === textEditor) return;
+    if (document.activeElement ===  startInput) return;
+    if (document.activeElement ===  endInput) return;
+
     function moveSubMarker(force) {
         if (subtitleMarkers.length <= 0) return;
 
@@ -232,8 +236,23 @@ document.addEventListener("keydown", (e) => {
         if (subMarkerSelected) {
             subMarkerSelected.start += force;
             subMarkerSelected.end += force;
+
+            subtitlesMarkersToList(subtitleMarkers);
+            subMarkerSelected.active();
             subMarkerSelected.updateElement(audio.duration);
         }
+    }
+
+    function moveSlider(force) {
+        const forceReal = force / 1000;
+
+        audio.element.currentTime += forceReal;
+
+        const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (audio.element.currentTime * 1000 / audio.duration);
+
+        console.log(clientX);
+
+        audioSlider.updateThumb(clientX);
     }
 
     const pressedKey = e.key.toLowerCase();
@@ -244,10 +263,33 @@ document.addEventListener("keydown", (e) => {
 
     if (pressedKey === "e") {
         if (!shiftHold) { 
-            moveSubMarker(250);
+            moveSubMarker(500);
         } else {
-            console.log(shiftHold);
             moveSubMarker(50);
+        }
+    }
+
+    if (pressedKey === "q") {
+        if (!shiftHold) { 
+            moveSubMarker(-500);
+        } else {
+            moveSubMarker(-50);
+        }
+    }
+
+    if (pressedKey === "d") {
+        if (!shiftHold) {
+            moveSlider(750);
+        } else {
+            moveSlider(50);
+        }
+    }
+
+    if (pressedKey === "a") {
+        if (!shiftHold) {
+            moveSlider(-750);
+        } else {
+            moveSlider(-50);
         }
     }
 });
