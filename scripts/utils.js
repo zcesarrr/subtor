@@ -20,6 +20,16 @@ const getMsToFormat = (time) => {
 class CustomSlider {
     #onUpdate;
     #onMove;
+    #enabledColors = () => {
+        this.slider.querySelector(".slider-track").style.background = "#ddd";
+        this.slider.querySelector(".slider-thumb").style.background = "red";
+        this.slider.querySelector("#guide-thumb").style.opacity = "100%";
+    }
+    #disabledColors = () => {
+        this.slider.querySelector(".slider-track").style.background = "#222";
+        this.slider.querySelector(".slider-thumb").style.background = "#444";
+        this.slider.querySelector("#guide-thumb").style.opacity = "0%";
+    }
     
     constructor(slider, onUpdate, onMove) {
         this.slider = slider;
@@ -85,10 +95,14 @@ class CustomSlider {
 
     enable() {
         this.slider.style.pointerEvents = "all"
+
+        this.#enabledColors();
     }
 
     disable() {
         this.slider.style.pointerEvents = "none"
+       
+        this.#disabledColors();
     }
 }
 
