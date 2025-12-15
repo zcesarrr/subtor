@@ -86,6 +86,13 @@ function addSubMarker() {
         return;
     }
 
+    const currentAudioTime = audio.element.currentTime * 1000;
+
+    if (subtitleMarkers.find(sub => sub.start < currentAudioTime && sub.end > currentAudioTime)) {
+        console.error("The subtitles markers can not be between other markers.");
+        return;
+    }
+
     const startTime = audio.element.currentTime * 1000;
     subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, startTime, startTime))
     subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
