@@ -154,6 +154,7 @@ restoreButton.addEventListener("click", () => {
     const selected = document.getElementsByClassName("list-subtitle-active")[0];
 
     setControlsInfo(selected);
+    restoreButton.disabled = true;
 });
 
 saveSubtitleButton.addEventListener("click", () => {
@@ -167,6 +168,7 @@ saveSubtitleButton.addEventListener("click", () => {
     selected.text = textEditor.value;
     
     subtitlesMarkersToList(subtitleMarkers);
+    selected.active();
 });
 
 audioPlayPauseButton.disabled = true;

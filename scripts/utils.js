@@ -159,7 +159,7 @@ const createSubtitleMarker = (slider, start, end) => {
     
     slider.appendChild(subtitleMarkerElement);
 
-    const object = new SubtitleMarker(subtitleMarkerElement, start, end, "Sample Text");
+    const object = new SubtitleMarker(subtitleMarkerElement, start, end);
 
     return object;
 }
@@ -169,6 +169,12 @@ const endInput = document.getElementById("end-editor");
 const textEditor = document.getElementById("text-editor");
 const saveSubtitleButton = document.getElementById("save-subtitle-button");
 const restoreButton = document.getElementById("restore-button");
+
+textEditor.addEventListener("input", (e) => {
+    if (restoreButton.disabled) {
+        restoreButton.disabled = false;
+    }
+});
 
 // Sync Subtitle Markers
 const subtitlesMarkersToList = (subtitleMarkers) => {
@@ -201,7 +207,7 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
             <p>-</p>
             <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkersSorted[i].end)}</p>
             <p>:</p>
-            <p class="list-subtitle-text">${subtitleMarkersSorted[i].text}</p>
+            <p class="list-subtitle-text">${subtitleMarkersSorted[i].text || ""}</p>
         `;
 
         subMarkerItem.addEventListener("click", () => {
@@ -226,7 +232,6 @@ const activeSubtitleListElement = (id) => {
     endInput.disabled = false;
     textEditor.disabled = false;
     saveSubtitleButton.disabled = false;
-    restoreButton.disabled = false;
 
     setControlsInfo(selected);
 };
@@ -234,7 +239,9 @@ const activeSubtitleListElement = (id) => {
 const setControlsInfo = (selected) => {
     const timersElement = selected.querySelectorAll(".list-subtitle-timer");
 
+    const textContent = selected.querySelector(".list-subtitle-text").textContent;
+
     startInput.value = timersElement[0].textContent || "";
     endInput.value = timersElement[1].textContent || "";
-    textEditor.value = selected.querySelector(".list-subtitle-text").textContent || "";
+    textEditor.value = textContent === undefined ?  "" : textContent;
 };
