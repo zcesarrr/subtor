@@ -147,6 +147,8 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
     startInput.disabled = true;
     endInput.disabled = true;
     textEditor.disabled = true;
+    saveSubtitleButton.disabled = true;
+    restoreButton.disabled = true;
 
     startInput.value = "";
     endInput.value = "";
@@ -195,7 +197,13 @@ const activeSubtitleListElement = (id) => {
     startInput.disabled = false;
     endInput.disabled = false;
     textEditor.disabled = false;
+    saveSubtitleButton.disabled = false;
+    restoreButton.disabled = false;
 
+    setControlsInfo(selected);
+};
+
+const setControlsInfo = (selected) => {
     const timersElement = selected.querySelectorAll(".list-subtitle-timer");
 
     startInput.value = timersElement[0].textContent || "";

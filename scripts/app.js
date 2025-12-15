@@ -150,6 +150,12 @@ audioSlider.disable();
 let subtitleMarkers = [];
 
 //Initialization
+restoreButton.addEventListener("click", () => {
+    const selected = document.getElementsByClassName("list-subtitle-active")[0];
+
+    setControlsInfo(selected);
+});
+
 audioPlayPauseButton.disabled = true;
 startInput.disabled = true;
 endInput.disabled = true;
