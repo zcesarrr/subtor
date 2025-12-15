@@ -216,3 +216,44 @@ startInput.disabled = true;
 endInput.disabled = true;
 textEditor.disabled = true;
 setupWorkspace();
+
+
+// Keyboards Hotkeys
+let shiftHold = false;
+
+document.addEventListener("keydown", (e) => {
+    if (!projectOpened) return;
+
+    function moveSubMarker(force) {
+        if (subtitleMarkers.length <= 0) return;
+
+        const subMarkerSelected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
+
+        if (subMarkerSelected) {
+            subMarkerSelected.start += force;
+            subMarkerSelected.end += force;
+            subMarkerSelected.updateElement(audio.duration);
+        }
+    }
+
+    const pressedKey = e.key.toLowerCase();
+
+    if (pressedKey === "shift") {
+        shiftHold = true;
+    }
+
+    if (pressedKey === "e") {
+        if (!shiftHold) { 
+            moveSubMarker(250);
+        } else {
+            console.log(shiftHold);
+            moveSubMarker(50);
+        }
+    }
+});
+
+document.addEventListener("keyup", (e) => {
+    const keyUp = e.key.toLowerCase();
+
+    if (keyUp === "shift") shiftHold = false;
+});
