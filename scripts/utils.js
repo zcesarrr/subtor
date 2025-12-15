@@ -159,7 +159,7 @@ const createSubtitleMarker = (slider, start, end) => {
     
     slider.appendChild(subtitleMarkerElement);
 
-    const object = new SubtitleMarker(subtitleMarkerElement, start, end);
+    const object = new SubtitleMarker(subtitleMarkerElement, start, end + 200);
 
     return object;
 }

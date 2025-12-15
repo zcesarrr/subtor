@@ -202,3 +202,15 @@ header {
     display: flex;
     gap: 8px;
 }
+
+#subtitles-viewer {
+    background: #111;
+    margin-top: 48px;
+    text-align: center;
+    padding: 8px;
+}
+
+#subtitles-viewer-text {
+    padding: 0;
+    margin: 0;
+}
