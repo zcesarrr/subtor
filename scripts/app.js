@@ -151,4 +151,7 @@ let subtitleMarkers = [];
 
 //Initialization
 audioPlayPauseButton.disabled = true;
+startInput.disabled = true;
+endInput.disabled = true;
+textEditor.disabled = true;
 setupWorkspace();

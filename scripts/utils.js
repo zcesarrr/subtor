@@ -136,6 +136,9 @@ const createSubtitleMarker = (slider, start, end) => {
     return object;
 }
 
+const startInput = document.getElementById("start-editor");
+const endInput = document.getElementById("end-editor");
+const textEditor = document.getElementById("text-editor");
 
 // Sync Subtitle Markers
 const subtitlesMarkersToList = (subtitleMarkers) => {
@@ -178,4 +181,8 @@ const activeSubtitleListElement = (id) => {
 
     const selected = document.getElementById(`list-subtitle-${id}`);
     selected.classList.add("list-subtitle-active");
+
+    startInput.disabled = false;
+    endInput.disabled = false;
+    textEditor.disabled = false;
 };
