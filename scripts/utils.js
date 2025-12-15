@@ -139,9 +139,19 @@ const createSubtitleMarker = (slider, start, end) => {
 const startInput = document.getElementById("start-editor");
 const endInput = document.getElementById("end-editor");
 const textEditor = document.getElementById("text-editor");
+const saveSubtitleButton = document.getElementById("save-subtitle-button");
+const restoreButton = document.getElementById("restore-button");
 
 // Sync Subtitle Markers
 const subtitlesMarkersToList = (subtitleMarkers) => {
+    startInput.disabled = true;
+    endInput.disabled = true;
+    textEditor.disabled = true;
+
+    startInput.value = "";
+    endInput.value = "";
+    textEditor.value = "";
+
     const subtitleMarkersSorted = [...subtitleMarkers].sort((a, b) => a.start - b.start);
 
     const subMarkersList = document.getElementById("subtitles-markers-list");
