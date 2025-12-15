@@ -156,6 +156,19 @@ restoreButton.addEventListener("click", () => {
     setControlsInfo(selected);
 });
 
+saveSubtitleButton.addEventListener("click", () => {
+    const selected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
+
+    const start = formatToMs(startInput.value);
+    const end = formatToMs(endInput.value);
+
+    selected.start = start;
+    selected.end = end;
+    selected.text = textEditor.value;
+    
+    subtitlesMarkersToList(subtitleMarkers);
+});
+
 audioPlayPauseButton.disabled = true;
 startInput.disabled = true;
 endInput.disabled = true;

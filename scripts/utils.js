@@ -15,6 +15,20 @@ const getMsToFormat = (time) => {
     return`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")},${String(ms).padStart(3, "0")}`;
 };
 
+const formatToMs = (format) => {
+    const timers = format.split(':');
+    const secondsSplit = timers[2].split(',');
+
+    const hoursToMs = parseInt(timers[0]) * 1000 * 60 * 60;
+    const minutesToMs = parseInt(timers[1]) * 1000 * 60;
+    const secondsToMs = parseInt(secondsSplit[0]) * 1000;
+    const msToMs = parseInt(secondsSplit[1]);
+
+    const msTotal = hoursToMs + minutesToMs + secondsToMs + msToMs;
+
+    return msTotal;
+};
+
 
 // Slider
 class CustomSlider {
