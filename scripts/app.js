@@ -102,6 +102,8 @@ function playPauseAudio() {
     }
 }
 
+const subtitleViewerText = document.getElementById("subtitle-viewer-text");
+
 const projectLoaded = () => {
     subtitleMarkers = [];
     audioSlider.updateThumb(0);
@@ -128,6 +130,20 @@ const projectLoaded = () => {
         const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (e.target.currentTime * 1000 / audio.duration);
 
         audioSlider.updateThumb(clientX);
+
+        if (subtitleMarkers.length > 0) {
+            const selectedSub = subtitleMarkers.find(sub => {
+                if (sub.text) {
+                    if (sub.start < e.target.currentTime * 1000 && sub.end > e.target.currentTime * 1000 && sub.text.trim("").length > 0) {
+                        return sub;
+                    }
+                }
+            })
+
+            if (selectedSub) {
+                console.log(selectedSub);
+            }
+        }
     });
 
     addSubMarkerButton.disabled = false;
