@@ -155,6 +155,8 @@ class SubtitleMarker {
         this.element.classList.add("sub-marker-active");
 
         activeSubtitleListElement(this.id);
+
+        removeSubMarkerButton.disabled = false;
     }
 }
 
