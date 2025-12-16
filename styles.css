@@ -71,6 +71,13 @@ header {
     margin-bottom: 12px;
 }
 
+#audio-slider-controls-actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-right: 32px;
+}
+
 #audio-slider-controls-actions button{
     font-size: 12px;
 }
@@ -137,6 +144,10 @@ header {
     left: 0;
     top: 42px;
     pointer-events: none;
+}
+
+main {
+    max-width: 1024px;
 }
 
 #subtitles-markers-container {
