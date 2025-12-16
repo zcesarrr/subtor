@@ -220,6 +220,21 @@ saveSubtitleButton.addEventListener("click", () => {
 
     if (end < start) return console.error("The end time can not be lower than the start time");
 
+    const hasCollision = subtitleMarkers.find(sub => {
+        if (sub !== selected) {
+            if ((start >= sub.start && start < sub.end) || 
+                (end > sub.start && end <= sub.end) ||
+                (start <= sub.start && end >= sub.end)) {
+                return true;
+            }
+        }
+        return false;
+    });
+
+    if (hasCollision) {
+        return console.error("The subtitle marker cannot overlap with another marker.");
+    }
+
     selected.start = start;
     selected.end = end;
     selected.text = textEditor.value;
