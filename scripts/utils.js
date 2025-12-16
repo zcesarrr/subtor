@@ -139,8 +139,12 @@ class SubtitleMarker {
     updateElement(targetDuration) {
         const percent = this.start / targetDuration;
 
+        const duration = this.end - this.start;
+        const durationPercent = (duration / targetDuration);
+
         this.element.style.left = `${percent * 100}%`;
         this.guide.style.left = `${percent * 100}%`;
+        this.guide.style.width = `${durationPercent * 100}%`;
     }
 
     active() {

@@ -137,7 +137,6 @@ header {
     left: 0;
     top: 42px;
     pointer-events: none;
-    z-index: -1;
 }
 
 #subtitles-markers-container {
