@@ -129,6 +129,17 @@ header {
     outline: 2px solid rgb(172, 172, 172);
 }
 
+.duration-guide {
+    position: absolute;
+    background: rgb(0, 255, 234);
+    width: 32px;
+    height: 2px;
+    left: 0;
+    top: 42px;
+    pointer-events: none;
+    z-index: -1;
+}
+
 #subtitles-markers-container {
     display: grid;
     grid-template-columns: 60% auto;

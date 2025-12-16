@@ -156,12 +156,12 @@ const checkInterval = setInterval(() => {
 }, 25);
 
 const projectLoaded = () => {
+    for (let i = 0; i < subtitleMarkers.length; i++) {
+        subtitleMarkers[i].element.remove();
+        subtitleMarkers[i].guide.remove();
+    }
     subtitleMarkers = [];
     audioSlider.updateThumb(0);
-    const currentMarkersElements = document.querySelectorAll(".sub-marker");
-    for (let i = 0; i < currentMarkersElements.length; i++) {
-        currentMarkersElements[i].remove();
-    }
     subtitlesMarkersToList(subtitleMarkers);
 
     addSubMarkerButton.removeEventListener("click", addSubMarker);

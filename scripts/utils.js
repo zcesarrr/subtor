@@ -123,9 +123,10 @@ class CustomSlider {
 
 // Subtitles Markers
 class SubtitleMarker {
-    constructor(element, start, end, text) {
+    constructor(element, guide, start, end, text) {
         this.id = crypto.randomUUID();
         this.element = element;
+        this.guide = guide;
         this.start = start;
         this.end = end;
         this.text = text;
@@ -139,6 +140,7 @@ class SubtitleMarker {
         const percent = this.start / targetDuration;
 
         this.element.style.left = `${percent * 100}%`;
+        this.guide.style.left = `${percent * 100}%`;
     }
 
     active() {
@@ -156,10 +158,14 @@ const createSubtitleMarker = (slider, start, end) => {
     const subtitleMarkerElement = document.createElement("div");
     subtitleMarkerElement.className = "sub-marker";
     subtitleMarkerElement.classList.add("sub-marker-unfinished");
+
+    const guideElement = document.createElement("div");
+    guideElement.className = "duration-guide";
     
     slider.appendChild(subtitleMarkerElement);
+    slider.appendChild(guideElement);
 
-    const object = new SubtitleMarker(subtitleMarkerElement, start, end);
+    const object = new SubtitleMarker(subtitleMarkerElement, guideElement, start, end);
 
     return object;
 }
