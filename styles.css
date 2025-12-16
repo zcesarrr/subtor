@@ -126,6 +126,7 @@ header {
 
 .sub-marker-active {
     background: white;
+    outline: 2px solid rgb(172, 172, 172);
 }
 
 #subtitles-markers-container {
@@ -167,6 +168,7 @@ header {
 }
 
 .list-subtitle {
+    user-select: none;
     cursor: pointer;
 }
 
@@ -184,8 +186,19 @@ header {
     cursor: pointer;
 }
 
+@keyframes subItemActivated {
+    0% {
+        background: rgb(151, 151, 150);
+    }
+
+    100% {
+        background: rgb(68, 65, 65);
+    }
+}
+
 .list-subtitle-active {
     background: rgb(68, 65, 65);
+    animation: subItemActivated 0.5s;
 }
 
 .subtitle-control label{
