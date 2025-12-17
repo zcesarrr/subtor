@@ -267,7 +267,7 @@ const activeSubtitleListElement = (id) => {
 const setControlsInfo = (selected) => {
     const timersElement = selected.querySelectorAll(".list-subtitle-timer");
 
-    const textContent = selected.querySelector(".list-subtitle-text").textContent;
+    const textContent = selected.querySelector(".list-subtitle-text").innerHTML;
 
     startInput.value = timersElement[0].textContent || "";
     endInput.value = timersElement[1].textContent || "";
