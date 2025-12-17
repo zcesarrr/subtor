@@ -280,6 +280,27 @@ const setControlsInfo = (selected) => {
     textEditor.value = textContent === undefined ?  "" : textContent;
 };
 
+const checkAndGetMs = (value) => {
+    const valueStr = value.toString();
+
+    const checkTimestampFormat = (v) => {
+        const regex = /^\d+:[0-5]\d:[0-5]\d,\d{3}$/;
+        return regex.test(v);
+    };
+
+    if (checkTimestampFormat(valueStr)) {
+        return formatToMs(valueStr);
+    }
+
+    if (!valueStr.includes(".")) {
+        return parseInt(valueStr);
+    }
+
+    if (valueStr.includes(".")) {
+        return parseFloat(valueStr) * audio.duration;
+    }
+};
+
 const strToMarkers = (content) => {
     const linesData = content.split('\n\n');
 
@@ -289,8 +310,8 @@ const strToMarkers = (content) => {
         const datas = linesData[i].split('\n');
         const timestamps = datas[1].split(' --> ');
 
-        const start = formatToMs(timestamps[0]);
-        const end = formatToMs(timestamps[1]);
+        const start = checkAndGetMs(timestamps[0]);
+        const end = checkAndGetMs(timestamps[1]);
 
         if (start < 0 || start > audio.duration) return console.error(`The line #${i + 1} has a start time out of the range.`);
 
