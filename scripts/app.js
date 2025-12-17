@@ -14,6 +14,20 @@ const audioPlayPauseButton = document.getElementById("audio-playplause-button");
 const addSubMarkerButton = document.getElementById("add-sub-marker-button");
 const removeSubMarkerButton = document.getElementById("remove-sub-marker-button");
 
+function showOrHideFormatOptionByExtSelected(ext) {
+    if (ext === ".srt") {
+        formatOption.style.display = "none";
+    } else {
+        formatOption.style.display = "block";
+    }
+}
+
+showOrHideFormatOptionByExtSelected(filenameExt.value);
+
+filenameExt.addEventListener("change", (e) => {
+    showOrHideFormatOptionByExtSelected(e.target.value);
+});
+
 const setupWorkspace = () => {
     if (!projectOpened) {
         filenameEl.style.display = "none";
@@ -62,13 +76,25 @@ loadProjectButton.addEventListener("click", () => {
 
 loadProjectInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
-    console.log(file);
     if (file) {
+        const ext = file.name.split('.').pop();
+
         const reader = new FileReader();
         
         reader.onload = (event) => {
             const text = event.target.result;
-            strToMarkers(text);
+
+            switch (ext) {
+                case "srt":
+                    srtToMarkers(text);
+                    break;
+                case "json":
+                    jsonToMarkers(text);
+                    break;
+                case "txt":
+                    psvToMarkers(text);
+                    break;
+            }
         };
         
         reader.onerror = (err) => {
@@ -103,8 +129,6 @@ exportButton.addEventListener("click", () => {
     document.body.removeChild(a);
 
     URL.revokeObjectURL(url);
-
-    console.log(getMarkersToSrt(subtitleMarkers));
 });
 
 function canPutMarker() {

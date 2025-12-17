@@ -301,7 +301,35 @@ const checkAndGetMs = (value) => {
     }
 };
 
-const strToMarkers = (content) => {
+const createMarkersByBuffer = (buffer) => {
+    for (let i = 0; i < subtitleMarkers.length; i++) {
+        subtitleMarkers[i].element.remove();
+        subtitleMarkers[i].guide.remove();
+    }
+
+    subtitleMarkers = [];
+
+    for (let i = 0; i < buffer.length; i++) {
+        addSubMarkerBuffer(buffer[i][0], buffer[i][1], buffer[i][2]);
+    }
+
+    subtitlesMarkersToList(subtitleMarkers);
+    subtitleMarkers[subtitleMarkers.length - 1].active();
+};
+
+const validateRanges = (start, end) => {
+    if (start < 0 || start > audio.duration) {
+        return false;
+    } 
+
+    if (end < 0 || end > audio.duration) {
+        return false;
+    }
+
+    return true
+};
+
+const srtToMarkers = (content) => {
     const linesData = content.split('\n\n');
 
     let markersBuffer = [];
@@ -313,19 +341,59 @@ const strToMarkers = (content) => {
         const start = checkAndGetMs(timestamps[0]);
         const end = checkAndGetMs(timestamps[1]);
 
-        if (start < 0 || start > audio.duration) return console.error(`The line #${i + 1} has a start time out of the range.`);
-
-        if (end < 0 || end > audio.duration) return console.error(`The line #${i + 1} has a end time out of the range.`);
+        if (!validateRanges(start, end)) {
+            console.error(`The line #${i + 1} has a timestamp out of the range.`);
+            return;
+        }
 
         markersBuffer.push([start, end, datas[2]]);
     }
 
-    for (let i = 0; i < markersBuffer.length; i++) {
-        addSubMarkerBuffer(markersBuffer[i][0], markersBuffer[i][1], markersBuffer[i][2]);
+    createMarkersByBuffer(markersBuffer);
+};
+
+const jsonToMarkers = (content) => {
+    const obj = JSON.parse(content);
+
+    let markersBuffer = [];
+
+    for (let i = 0; i < obj.length; i++) {
+        const start = checkAndGetMs(obj[i].start);
+        const end = checkAndGetMs(obj[i].end);
+        const text = obj[i].text;
+
+        if (!validateRanges(start, end)) {
+            console.error(`The line #${i + 1} has a timestamp out of the range.`);
+            return;
+        }
+
+        markersBuffer.push([start, end, text]);
     }
 
-    subtitlesMarkersToList(subtitleMarkers);
-    subtitleMarkers[subtitleMarkers.length - 1].active();
+    createMarkersByBuffer(markersBuffer);
+};
+
+const psvToMarkers = (content) => {
+    const lines = content.split('\n');
+
+    let markersBuffer = [];
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].split('|');
+
+        const start = checkAndGetMs(line[1]);
+        const end = checkAndGetMs(line[2]);
+        const text = line[3];
+
+        if (!validateRanges(start, end)) {
+            console.error(`The line #${i + 1} has a timestamp out of the range.`);
+            return;
+        }
+
+        markersBuffer.push([start, end, text]);
+    }
+
+    createMarkersByBuffer(markersBuffer);
 };
 
 const getCountMethod = (value) => {
@@ -345,8 +413,8 @@ const getMarkersToSrt = (markers) => {
     let content = "";
 
     for (let i = 0; i < markers.length; i++) {
-        const start = getCountMethod(markers[i].start);
-        const end = getCountMethod(markers[i].end);
+        const start = getMsToFormat(markers[i].start);
+        const end = getMsToFormat(markers[i].end);
 
         content += `${i + 1}\n${start} --> ${end}\n${markers[i].text}`;
         if (i < markers.length - 1) content += "\n\n";
