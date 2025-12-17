@@ -283,15 +283,26 @@ const setControlsInfo = (selected) => {
 const strToMarkers = (content) => {
     const linesData = content.split('\n\n');
 
+    let markersBuffer = [];
+
     for (let i = 0; i < linesData.length; i++) {
         const datas = linesData[i].split('\n');
         const timestamps = datas[1].split(' --> ');
 
-        addSubMarkerBuffer(formatToMs(timestamps[0]), formatToMs(timestamps[1]), datas[2]);
+        const start = formatToMs(timestamps[0]);
+        const end = formatToMs(timestamps[1]);
+
+        if (start < 0 || start > audio.duration) return console.error(`The line #${i + 1} has a start time out of the range.`);
+
+        if (end < 0 || end > audio.duration) return console.error(`The line #${i + 1} has a end time out of the range.`);
+
+        markersBuffer.push([start, end, datas[2]]);
+    }
+
+    for (let i = 0; i < markersBuffer.length; i++) {
+        addSubMarkerBuffer(markersBuffer[i][0], markersBuffer[i][1], markersBuffer[i][2]);
     }
 
     subtitlesMarkersToList(subtitleMarkers);
     subtitleMarkers[subtitleMarkers.length - 1].active();
-
-    console.log(subtitleMarkers);
 };
