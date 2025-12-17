@@ -145,7 +145,7 @@ const checkInterval = setInterval(() => {
         if (selectedSub) {
             if (currentText != selectedSub.text) {
                 currentText = selectedSub.text;
-                subtitleViewerText.textContent = currentText;
+                subtitleViewerText.innerHTML = currentText;
 
                 if (subtitleViewerText.parentElement.style.opacity !== "100%") {
                     subtitleViewerText.parentElement.style.opacity = "100%";
@@ -244,6 +244,10 @@ saveSubtitleButton.addEventListener("click", () => {
     const start = formatToMs(startInput.value);
     const end = formatToMs(endInput.value);
 
+    if (start < 0 || start > audio.duration) return console.error("The start time is out of the range.");
+
+    if (end < 0 || end > audio.duration) return console.error("The end time is out of the range.");
+
     if (end < start) return console.error("The end time can not be lower than the start time");
 
     const hasCollision = subtitleMarkers.find(sub => {
@@ -312,11 +316,19 @@ document.addEventListener("keydown", (e) => {
         const subMarkerSelected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
 
         if (subMarkerSelected) {
+            const newStart = subMarkerSelected.start + force;
+            const newEnd = subMarkerSelected.end + force;
+
+            if (newStart < 0 || newStart > audio.duration) {
+                return console.log("Cannot move marker outside audio duration.");
+            }
+
+            if (newEnd < 0 || newEnd > audio.duration) {
+                return console.log("Cannot move marker outside audio duration.");
+            }
+
             const hasCollision = subtitleMarkers.find(sub => {
                 if (sub !== subMarkerSelected) {
-                    const newStart = subMarkerSelected.start + force;
-                    const newEnd = subMarkerSelected.end + force;
-                    
                     if ((newStart >= sub.start && newStart < sub.end) || 
                         (newEnd > sub.start && newEnd <= sub.end) ||
                         (newStart <= sub.start && newEnd >= sub.end)) {
@@ -330,8 +342,8 @@ document.addEventListener("keydown", (e) => {
                 return console.log("The selected subtitle marker cannot be moved forward.");
             }
 
-            subMarkerSelected.start += force;
-            subMarkerSelected.end += force;
+            subMarkerSelected.start = newStart;
+            subMarkerSelected.end = newEnd;
 
             subtitlesMarkersToList(subtitleMarkers);
             subMarkerSelected.active();
@@ -427,11 +439,19 @@ document.addEventListener("wheel", (e) => {
         const subMarkerSelected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
 
         if (subMarkerSelected) {
+            const newStart = subMarkerSelected.start + force;
+            const newEnd = subMarkerSelected.end + force;
+
+            if (newStart < 0 || newStart > audio.duration) {
+                return console.log("Cannot move marker outside audio duration.");
+            }
+
+            if (newEnd < 0 || newEnd > audio.duration) {
+                return console.log("Cannot move marker outside audio duration.");
+            }
+
             const hasCollision = subtitleMarkers.find(sub => {
                 if (sub !== subMarkerSelected) {
-                    const newStart = subMarkerSelected.start + force;
-                    const newEnd = subMarkerSelected.end + force;
-                    
                     if ((newStart >= sub.start && newStart < sub.end) || 
                         (newEnd > sub.start && newEnd <= sub.end) ||
                         (newStart <= sub.start && newEnd >= sub.end)) {
