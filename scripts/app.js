@@ -77,6 +77,20 @@ loadProjectInput.addEventListener("change", (e) => {
 });
 
 exportButton.addEventListener("click", () => {
+    const content = getMarkersToSrt(subtitleMarkers);
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${projectName.value}.srt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+
     console.log(getMarkersToSrt(subtitleMarkers));
 });
 
