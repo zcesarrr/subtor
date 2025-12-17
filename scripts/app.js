@@ -2,10 +2,12 @@
 const loadProjectInput = document.getElementById("load-project-input");
 const loadSongInput = document.getElementById("load-song-input");
 
+const filenameEl = document.getElementById("filename");
 const projectName = document.getElementById("project-name");
 const newProjectButton = document.getElementById("new-project-button");
 const loadProjectButton = document.getElementById("load-project-button");
 const exportButton = document.getElementById("export-button");
+const filenameExt = document.getElementById("filename-ext");
 
 const audioPlayPauseButton = document.getElementById("audio-playplause-button");
 const addSubMarkerButton = document.getElementById("add-sub-marker-button");
@@ -13,13 +15,13 @@ const removeSubMarkerButton = document.getElementById("remove-sub-marker-button"
 
 const setupWorkspace = () => {
     if (!projectOpened) {
-        projectName.style.display = "none";
+        filenameEl.style.display = "none";
         exportButton.disabled = true;
 
         return;
     }
 
-    projectName.style.display = "block";
+    filenameEl.style.display = "flex";
 };
 
 newProjectButton.addEventListener("click", () => {
@@ -77,14 +79,22 @@ loadProjectInput.addEventListener("change", (e) => {
 });
 
 exportButton.addEventListener("click", () => {
-    const content = getMarkersToSrt(subtitleMarkers);
+    const content = (() => {
+        switch (filenameExt.value) {
+            case ".str":
+                return getMarkersToSrt(subtitleMarkers);
+            case ".json":
+                return getMarkersToJson(subtitleMarkers);
+        }
+    })();
+    
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     
     a.style.display = 'none';
     a.href = url;
-    a.download = `${projectName.value}.srt`;
+    a.download = `${projectName.value}${filenameExt.value}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -455,10 +465,6 @@ document.addEventListener("wheel", (e) => {
         if (subMarkerSelected) {
             const newStart = subMarkerSelected.start + force;
             const newEnd = subMarkerSelected.end + force;
-
-            if (newStart < 0 || newStart > audio.duration) {
-                return console.log("Cannot move marker outside audio duration.");
-            }
 
             if (newEnd < 0 || newEnd > audio.duration) {
                 return console.log("Cannot move marker outside audio duration.");

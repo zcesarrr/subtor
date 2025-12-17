@@ -13,12 +13,31 @@
 
     <div id="container">
         <header>
-            <input autocomplete="off" type="text" id="project-name" name="project-name">
-            <ul id="file-actions">
-                <li><button id="new-project-button">Load Audio</button></li>
-                <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
-                <li><button id="export-button" disabled>Export</button></li>
-            </ul>
+            <div id="filename">
+                <input autocomplete="off" type="text" id="project-name" name="project-name">
+                <select id="filename-ext">
+                    <option value=".srt">.srt</option>
+                    <option value=".json">.json</option>
+                    <option value=".txt">.txt</option>
+                </select>
+            </div>
+            <div id="top-options">
+                <ul class="top-nav">
+                    <li><button id="new-project-button">Load Audio</button></li>
+                    <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
+                </ul>
+                <ul class="top-nav">
+                    <li><button id="export-button" disabled>Export</button></li>
+                </ul>
+            </div>
+            <!--<div id="export-options-container">
+                <label for="export-options">Export Options:</label>
+                <select id="export-options" name="export-options">
+                    <option value=".str">.str</option>
+                    <option value=".json">.json</option>
+                    <option value=".txt">.txt</option>
+                </select>
+            </div>-->
         </header>
         <main>
             <div id="subtitles-markers-container">

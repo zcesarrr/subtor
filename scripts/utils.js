@@ -320,3 +320,7 @@ const getMarkersToSrt = (markers) => {
 
     return content;
 };
+
+const getMarkersToJson = (markers) => {
+    return JSON.stringify(markers);
+};
