@@ -1,30 +1,90 @@
-Subtor is a simple subtitles edtior for your quick tasks. This editor works for projects that needs not complex subtitles system.
+# 🎬 Subtor
 
-Features:
-- Audio Loader with timeline system.
-- Subtitles Loader, supporting srt, json and txt (Pipe-Separated Values) files.
-- Multiple export options in different formats:
-    File Formats:
-        - srt
-        - json
-        - txt (PSV)
-    TImestamp Formats:
-        - hh:mm:ss:ms
-        - ms
-        - Normalized (0-1 values)
-- Shortcuts keys (see more below).
+**A lightweight subtitle editor for quick and efficient subtitle creation.**
 
-Shortcuts:
-- Q, E: Move Subtitle Marker to left and right in the timeline.
-    - Hold SHIFT to move in less increment.
-- A, D: Move Audio Time to left and right in the timeline.
-    - Hold SHIFT to move in less increment.
-- Scroll Wheel: Change the duration of a Subtitle.
-- CTRL + X, DEL: Remove a Subtitle Marker.
-- Spacebar: Resume or Pause the audio.
+Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for content game engines, creators, video editors, and anyone who needs to create subtitles quickly without the overhead of professional tools.
 
+Currently this project is a functional prototype.
 
-For now this editor lacks of important features such as states rollback (CTRL + Z) or Waveform Visualizer. For this reason you want to use it for simple tasks, but if you find it useful, you can give it a try for other complexity stuff.
+---
 
-Author
-CesarZ
+## ✨ Features
+
+### 🎵 Audio Management
+- **Audio Loader** with visual timeline system
+- Supports multiple audio formats: `.mp3`, `.wav`, `.ogg`
+- Real-time audio playback with visual progress tracking
+- Precise timeline navigation with keyboard shortcuts
+
+### 📝 Subtitle Management
+- **Visual Subtitle Markers** on the timeline
+- **Live Subtitle Preview** while audio plays
+- **Collision Detection** prevents overlapping subtitles
+- Interactive subtitle list with quick navigation
+- Text editor with start/end time controls
+- Restore function to revert unsaved changes
+
+### 📁 Import & Export
+**Import Formats:**
+- `.srt` (SubRip)
+- `.json` (JSON format)
+- `.txt` (Pipe-Separated Values)
+
+**Export Options:**
+- File Formats: `.srt`, `.json`, `.txt` (PSV)
+- Timestamp Formats:
+  - `hh:mm:ss,ms` (Standard format)
+  - `ms` (Milliseconds)
+  - `Normalized` (0-1 values based on the current Audio Duration)
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+### Subtitle Marker Movement
+- **Q / E** : Move selected marker left/right (500ms)
+  - Hold **Shift** for precise movement (50ms)
+
+### Audio Timeline Navigation
+- **A / D** : Move playback position left/right (750ms)
+  - Hold **Shift** for precise movement (50ms)
+
+### Duration Adjustment
+- **Scroll Wheel** : Adjust subtitle end time (500ms increments)
+  - Hold **Shift** for fine control (50ms increments)
+
+### Marker Management
+- **Ctrl + A** : Add new subtitle marker at current position
+- **Ctrl + X** or **Delete** : Remove selected marker
+
+### Playback Control
+- **Spacebar** : Play/Pause audio
+
+---
+
+## 🚀 Getting Started
+
+1. **Load Audio** : Click "Load Audio" and select your audio file
+2. **Add Markers** : Use `Ctrl + A` or click "Add Marker" to create subtitle points
+3. **Edit Subtitles** : Click markers to edit start/end times and text
+4. **Export** : Choose your format and export when finished
+
+---
+
+## 🔮 Future Features
+
+This editor is designed for simplicity and it's currently a prototype, but some features are planned:
+- Undo/Redo functionality (Ctrl + Z)
+- Waveform visualizer for precise timing
+
+---
+
+## 👤 Author
+
+[**CesarZ**](https://bio.link/cesarz)
+
+---
+
+## 📄 License
+
+This project is open source. View the [source code on GitHub](https://github.com/zcesarrr/subtor).
