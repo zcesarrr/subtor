@@ -31,14 +31,6 @@
                 <li><button id="new-project-button">Load Audio</button></li>
                 <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
             </ul>
-            <!--<div id="export-options-container">
-                <label for="export-options">Export Options:</label>
-                <select id="export-options" name="export-options">
-                    <option value=".str">.str</option>
-                    <option value=".json">.json</option>
-                    <option value=".txt">.txt</option>
-                </select>
-            </div>-->
         </header>
         <main>
             <div id="subtitles-markers-container">
@@ -90,11 +82,21 @@
                     </div>
                 </div>
             </div>
+            <div id="subtitles-viewer">
+                <p id="subtitle-viewer-text">Probando</p>
+            </div>
         </main>
-        <div id="subtitles-viewer">
-            <p id="subtitle-viewer-text">Probando</p>
-        </div>
     </div>
+
+    <footer>
+        <a href="https://github.com/zcesarrr/subtor" target="_blank" id="source-code">View the source code on GitHub</a>
+        <p id="app-title">Subtor</p>
+        <div id="creator">
+            <p>CesarZ</p>
+            <a href="https://x.com/zcesarrr" target="_blank" class="creator-social-wrapper"><img class="creator-social" src="icons/twitter.svg" alt="Twiter Logo"></a>
+            <a href="https://github.com/zcesarrr" target="_blank" class="creator-social-wrapper"><img class="creator-social" src="icons/github.svg" alt="GitHub Logo"></a>
+        </div>
+    </footer>
     
     <script src="scripts/utils.js"></script>
     <script src="scripts/app.js"></script>

@@ -484,6 +484,7 @@ let oldDurations = [];
 const MAX_HISTORY = 100;
 
 const rollbackDuration = () => {
+    if (true) return;
     if (oldDurations.length === 0) return;
     
     oldDurations.pop();
