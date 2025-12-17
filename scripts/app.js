@@ -20,7 +20,6 @@ const setupWorkspace = () => {
     }
 
     projectName.style.display = "block";
-    exportButton.disabled = false;
 };
 
 newProjectButton.addEventListener("click", () => {

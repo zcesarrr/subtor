@@ -244,6 +244,12 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
 
         subMarkersList.appendChild(subMarkerItem);
     }
+
+    if (subtitleMarkers.length <= 0) {
+        exportButton.disabled = true;
+    } else {
+        exportButton.disabled = false;
+    }
 };
 
 const activeSubtitleListElement = (id) => {
