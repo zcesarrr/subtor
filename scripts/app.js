@@ -86,6 +86,8 @@ exportButton.addEventListener("click", () => {
                 return getMarkersToSrt(subtitleMarkers);
             case ".json":
                 return getMarkersToJson(subtitleMarkers);
+            case ".txt":
+                return getMarkersToTxt(subtitleMarkers);
         }
     })();
     

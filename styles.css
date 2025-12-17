@@ -54,17 +54,16 @@ body {
     margin: 16px;
 }
 
-#top-options {
-    display: flex;
-    gap: 16px;
-}
-
 .top-nav {
     display: flex;
     margin: 0;
     padding: 0;
     list-style-type: none;
     gap: 4px;
+}
+
+#export-button {
+    margin-left: 8px;
 }
 
 header {

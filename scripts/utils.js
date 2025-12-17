@@ -312,7 +312,9 @@ const getCountMethod = (value) => {
         switch (formatOption.value) {
             case "format":
                 return getMsToFormat(value);
-            case "normalizer":
+            case "ms":
+                return value;
+            case "normalized":
                 return value / audio.duration;
         }
     })()
@@ -345,4 +347,18 @@ const getMarkersToJson = (markers) => {
     }
 
     return JSON.stringify(content);
+};
+
+const getMarkersToTxt = (markers) => {
+    let content = "";
+
+    for (let i = 0; i < markers.length; i++) {
+        const start = getCountMethod(markers[i].start);
+        const end = getCountMethod(markers[i].end);
+
+        content += `${i+1}|${start}|${end}|${markers[i].text}`;
+        if (i < markers.length - 1) content += "\n";
+    }
+
+    return content;
 };

@@ -18,22 +18,19 @@
                 <select id="filename-ext">
                     <option value=".srt">.srt</option>
                     <option value=".json">.json</option>
-                    <option value=".txt">.txt</option>
+                    <option value=".txt">.txt (PSV)</option>
                 </select>
                 <select id="format-option">
                     <option value="format">hh:mm:ss,ms</option>
-                    <option value="normalizer">Normalizer</option>
+                    <option value="ms">ms</option>
+                    <option value="normalized">Normalized</option>
                 </select>
+                <button id="export-button" disabled>Export</button>
             </div>
-            <div id="top-options">
-                <ul class="top-nav">
-                    <li><button id="new-project-button">Load Audio</button></li>
-                    <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
-                </ul>
-                <ul class="top-nav">
-                    <li><button id="export-button" disabled>Export</button></li>
-                </ul>
-            </div>
+            <ul class="top-nav">
+                <li><button id="new-project-button">Load Audio</button></li>
+                <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
+            </ul>
             <!--<div id="export-options-container">
                 <label for="export-options">Export Options:</label>
                 <select id="export-options" name="export-options">
