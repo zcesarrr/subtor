@@ -2,7 +2,7 @@
 
 **A lightweight subtitle editor for quick and efficient subtitle creation.**
 
-Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for content game engines, creators, video editors, and anyone who needs to create subtitles quickly without the overhead of professional tools.
+Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for game engines, video editors, content creators, and anyone who needs to create subtitles quickly without the overhead of professional tools.
 
 ---
 
@@ -74,6 +74,7 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
 This editor is designed for simplicity and it's currently a prototype, but some features are planned:
 - Undo/Redo functionality (Ctrl + Z)
 - Waveform visualizer for precise timing
+- Zoom in/out timeline for more precision
 
 ---
 

@@ -51,8 +51,11 @@ body {
 }
 
 #container {
-    margin: 16px;
-    max-width: 1536px;
+    margin: 16px 16px;
+}
+
+main {
+    width: 100%;
 }
 
 .top-nav {
@@ -135,7 +138,7 @@ header {
 .sub-marker {
     position: absolute;
     background: greenyellow;
-    width: 6px;
+    width: 3px;
     height: 24px;
     left: 0;
     top: 32px;
