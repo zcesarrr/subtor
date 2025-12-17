@@ -12,27 +12,28 @@
     <input type="file" id="load-project-input" accept=".srt, .json, .txt" style="display: none;">
     <input type="file" id="load-song-input" accept=".mp3, .wav, .ogg" style="display: none;">
 
+    <header>
+        <div id="filename">
+            <input autocomplete="off" type="text" id="project-name" name="project-name">
+            <select id="filename-ext">
+                <option value=".srt">.srt</option>
+                <option value=".json">.json</option>
+                <option value=".txt">.txt (PSV)</option>
+            </select>
+            <select id="format-option">
+                <option value="format">hh:mm:ss,ms</option>
+                <option value="ms">ms</option>
+                <option value="normalized">Normalized</option>
+            </select>
+            <button id="export-button" disabled>Export</button>
+        </div>
+        <ul class="top-nav">
+            <li><button id="new-project-button">Load Audio</button></li>
+            <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
+        </ul>
+    </header>
+
     <div id="container">
-        <header>
-            <div id="filename">
-                <input autocomplete="off" type="text" id="project-name" name="project-name">
-                <select id="filename-ext">
-                    <option value=".srt">.srt</option>
-                    <option value=".json">.json</option>
-                    <option value=".txt">.txt (PSV)</option>
-                </select>
-                <select id="format-option">
-                    <option value="format">hh:mm:ss,ms</option>
-                    <option value="ms">ms</option>
-                    <option value="normalized">Normalized</option>
-                </select>
-                <button id="export-button" disabled>Export</button>
-            </div>
-            <ul class="top-nav">
-                <li><button id="new-project-button">Load Audio</button></li>
-                <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
-            </ul>
-        </header>
         <main>
             <div id="subtitles-markers-container">
                 <ul id="subtitles-markers-list">

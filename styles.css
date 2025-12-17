@@ -71,6 +71,8 @@ main {
 }
 
 header {
+    background: #111;
+    padding: 16px;
     margin-bottom: 128px;
 }
 
@@ -126,7 +128,7 @@ header {
 
 #guide-thumb {
     position: absolute;
-    background: rgba(155, 210, 255, 0.25);
+    background: rgba(155, 210, 255, 0.5);
     height: 48px;
     width: 1px;
     z-index: -999;
@@ -144,6 +146,7 @@ header {
     top: 32px;
     transform: translateX(-50%);
     cursor: pointer;
+    z-index: -5;
 }
 
 .sub-marker-unfinished {
@@ -163,6 +166,7 @@ header {
     left: 0;
     top: 42px;
     pointer-events: none;
+    z-index: -4;
 }
 
 #subtitles-markers-container {
@@ -254,7 +258,7 @@ header {
 
 #subtitles-viewer {
     background: #111;
-    margin-top: 48px;
+    margin-top: 64px;
     text-align: center;
     padding: 8px;
     opacity: 0%;

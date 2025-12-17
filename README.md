@@ -16,7 +16,7 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
 
 ### 📝 Subtitle Management
 - **Visual Subtitle Markers** on the timeline
-- **Live Subtitle Preview** while audio plays
+- **Live Subtitle Preview** while audio plays, including text styles (bold, italic, strikethrough)
 - **Collision Detection** prevents overlapping subtitles
 - Interactive subtitle list with quick navigation
 - Text editor with start/end time controls
