@@ -490,18 +490,25 @@ document.addEventListener("wheel", (e) => {
         const subMarkerSelected = subtitleMarkers.find(sub => sub.element.classList.contains("sub-marker-active"));
 
         if (subMarkerSelected) {
-            const newStart = subMarkerSelected.start + force;
             const newEnd = subMarkerSelected.end + force;
 
             if (newEnd < 0 || newEnd > audio.duration) {
                 return console.log("Cannot move marker outside audio duration.");
             }
 
+            if (newEnd < subMarkerSelected.start) {
+                subMarkerSelected.end = subMarkerSelected.start;
+                subtitlesMarkersToList(subtitleMarkers);
+                subMarkerSelected.active();
+                subMarkerSelected.updateElement(audio.duration);
+                return;
+            }
+
             const hasCollision = subtitleMarkers.find(sub => {
                 if (sub !== subMarkerSelected) {
-                    if ((newStart >= sub.start && newStart < sub.end) || 
+                    if ((subMarkerSelected.start >= sub.start && subMarkerSelected.start < sub.end) || 
                         (newEnd > sub.start && newEnd <= sub.end) ||
-                        (newStart <= sub.start && newEnd >= sub.end)) {
+                        (subMarkerSelected.start <= sub.start && newEnd >= sub.end)) {
                         return true;
                     }
                 }
