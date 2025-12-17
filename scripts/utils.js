@@ -276,7 +276,6 @@ const setControlsInfo = (selected) => {
 
 const strToMarkers = (content) => {
     const linesData = content.split('\n\n');
-    let linesParsed = [];
 
     for (let i = 0; i < linesData.length; i++) {
         const datas = linesData[i].split('\n');

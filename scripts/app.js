@@ -5,8 +5,6 @@ const loadSongInput = document.getElementById("load-song-input");
 const projectName = document.getElementById("project-name");
 const newProjectButton = document.getElementById("new-project-button");
 const loadProjectButton = document.getElementById("load-project-button");
-const saveButton = document.getElementById("save-button");
-const saveAsButton = document.getElementById("save-as-button");
 const exportButton = document.getElementById("export-button");
 
 const audioPlayPauseButton = document.getElementById("audio-playplause-button");
@@ -16,16 +14,12 @@ const removeSubMarkerButton = document.getElementById("remove-sub-marker-button"
 const setupWorkspace = () => {
     if (!projectOpened) {
         projectName.style.display = "none";
-        saveButton.disabled = true;
-        saveAsButton.disabled = true;
         exportButton.disabled = true;
 
         return;
     }
 
     projectName.style.display = "block";
-    saveButton.disabled = false;
-    saveAsButton.disabled = false;
     exportButton.disabled = false;
 };
 
@@ -81,14 +75,6 @@ loadProjectInput.addEventListener("change", (e) => {
         
         reader.readAsText(file);
     }
-});
-
-saveButton.addEventListener("click", () => {
-    console.log("saved");
-});
-
-saveAsButton.addEventListener("click", () => {
-    console.log("saved on a new location");
 });
 
 exportButton.addEventListener("click", () => {
@@ -210,6 +196,8 @@ const projectLoaded = () => {
 
         currentText = "";
     }
+
+    loadProjectButton.disabled = false;
 
     projectOpened = true;
     setupWorkspace();
