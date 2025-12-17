@@ -481,30 +481,25 @@ document.addEventListener("keydown", (e) => {
 });
 
 let oldDurations = [];
-/*
-oldDuration = [{
-    id:
-    end:
-}];
-*/
+const MAX_HISTORY = 100;
 
 const rollbackDuration = () => {
-    console.log(oldDurations);
+    if (oldDurations.length === 0) return;
+    
+    oldDurations.pop();
+    
+    if (oldDurations.length === 0) return;
+    
+    const previousState = oldDurations[oldDurations.length - 1];
+    const subMarkerSelected = subtitleMarkers.find(sub => sub.id === previousState.id);
 
-    if (oldDurations.length > 0) {
-        const index = Math.max(0, oldDurations.length - 5);
-        oldDurations.splice(index, oldDurations.length);
-
-        const subMarkerSelected = subtitleMarkers.find(sub => sub.id === oldDurations[oldDurations.length - 1].id);
-
-        subMarkerSelected.end = oldDurations[oldDurations.length - 1].end;
+    if (subMarkerSelected) {
+        subMarkerSelected.end = previousState.end;
 
         subtitlesMarkersToList(subtitleMarkers);
         subMarkerSelected.active();
         subMarkerSelected.updateElement(audio.duration);
     }
-
-    console.log(oldDurations);
 };
 
 document.addEventListener("wheel", (e) => {
@@ -530,6 +525,9 @@ document.addEventListener("wheel", (e) => {
             }
 
             if (newEnd < subMarkerSelected.start) {
+                oldDurations.push({id: subMarkerSelected.id, end: subMarkerSelected.end});
+                if (oldDurations.length > MAX_HISTORY) oldDurations.shift();
+                
                 subMarkerSelected.end = subMarkerSelected.start;
                 subtitlesMarkersToList(subtitleMarkers);
                 subMarkerSelected.active();
@@ -552,14 +550,14 @@ document.addEventListener("wheel", (e) => {
                 return console.log("The selected subtitle marker cannot be moved forward.");
             }
 
-            subMarkerSelected.end += force;
-            if (subMarkerSelected.end < subMarkerSelected.start) subMarkerSelected.end = subMarkerSelected.start;
+            oldDurations.push({id: subMarkerSelected.id, end: subMarkerSelected.end});
+            if (oldDurations.length > MAX_HISTORY) oldDurations.shift();
+
+            subMarkerSelected.end = newEnd;
 
             subtitlesMarkersToList(subtitleMarkers);
             subMarkerSelected.active();
             subMarkerSelected.updateElement(audio.duration);
-
-            oldDurations.push({id: subMarkerSelected.id, end: subMarkerSelected.end});
         }
     }
 
