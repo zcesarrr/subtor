@@ -52,6 +52,7 @@ body {
 
 #container {
     margin: 16px;
+    max-width: 1536px;
 }
 
 .top-nav {
@@ -159,10 +160,6 @@ header {
     left: 0;
     top: 42px;
     pointer-events: none;
-}
-
-main {
-    max-width: 1536px;
 }
 
 #subtitles-markers-container {
