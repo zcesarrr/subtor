@@ -4,8 +4,6 @@
 
 Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for content game engines, creators, video editors, and anyone who needs to create subtitles quickly without the overhead of professional tools.
 
-Currently this project is a functional prototype.
-
 ---
 
 ## ✨ Features
