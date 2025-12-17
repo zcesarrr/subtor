@@ -472,7 +472,40 @@ document.addEventListener("keydown", (e) => {
     if (pressedKey === " ") {
         playPauseAudio();
     }
+
+    if (pressedKey === "z") {
+        if (ctrlHold) {
+            rollbackDuration();
+        }
+    }
 });
+
+let oldDurations = [];
+/*
+oldDuration = [{
+    id:
+    end:
+}];
+*/
+
+const rollbackDuration = () => {
+    console.log(oldDurations);
+
+    if (oldDurations.length > 0) {
+        const index = Math.max(0, oldDurations.length - 5);
+        oldDurations.splice(index, oldDurations.length);
+
+        const subMarkerSelected = subtitleMarkers.find(sub => sub.id === oldDurations[oldDurations.length - 1].id);
+
+        subMarkerSelected.end = oldDurations[oldDurations.length - 1].end;
+
+        subtitlesMarkersToList(subtitleMarkers);
+        subMarkerSelected.active();
+        subMarkerSelected.updateElement(audio.duration);
+    }
+
+    console.log(oldDurations);
+};
 
 document.addEventListener("wheel", (e) => {
     if (!projectOpened) return;
@@ -525,6 +558,8 @@ document.addEventListener("wheel", (e) => {
             subtitlesMarkersToList(subtitleMarkers);
             subMarkerSelected.active();
             subMarkerSelected.updateElement(audio.duration);
+
+            oldDurations.push({id: subMarkerSelected.id, end: subMarkerSelected.end});
         }
     }
 
