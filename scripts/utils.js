@@ -307,12 +307,23 @@ const strToMarkers = (content) => {
     subtitleMarkers[subtitleMarkers.length - 1].active();
 };
 
+const getCountMethod = (value) => {
+    return (() => {
+        switch (formatOption.value) {
+            case "format":
+                return getMsToFormat(value);
+            case "normalizer":
+                return value / audio.duration;
+        }
+    })()
+};
+
 const getMarkersToSrt = (markers) => {
     let content = "";
 
     for (let i = 0; i < markers.length; i++) {
-        const start = getMsToFormat(markers[i].start);
-        const end = getMsToFormat(markers[i].end);
+        const start = getCountMethod(markers[i].start);
+        const end = getCountMethod(markers[i].end);
 
         content += `${i + 1}\n${start} --> ${end}\n${markers[i].text}`;
         if (i < markers.length - 1) content += "\n\n";
@@ -327,8 +338,8 @@ const getMarkersToJson = (markers) => {
     for (let i = 0; i < markers.length; i++) {
         content.push({
             id: i + 1,
-            start: getMsToFormat(markers[i].start),
-            end: getMsToFormat(markers[i].end),
+            start: getCountMethod(markers[i].start),
+            end: getCountMethod(markers[i].end),
             text: markers[i].text
         });
     }

@@ -8,6 +8,7 @@ const newProjectButton = document.getElementById("new-project-button");
 const loadProjectButton = document.getElementById("load-project-button");
 const exportButton = document.getElementById("export-button");
 const filenameExt = document.getElementById("filename-ext");
+const formatOption = document.getElementById("format-option");
 
 const audioPlayPauseButton = document.getElementById("audio-playplause-button");
 const addSubMarkerButton = document.getElementById("add-sub-marker-button");
