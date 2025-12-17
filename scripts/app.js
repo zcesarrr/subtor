@@ -77,7 +77,7 @@ loadProjectInput.addEventListener("change", (e) => {
 });
 
 exportButton.addEventListener("click", () => {
-    console.log("exported");
+    console.log(getMarkersToSrt(subtitleMarkers));
 });
 
 function canPutMarker() {

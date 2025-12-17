@@ -306,3 +306,17 @@ const strToMarkers = (content) => {
     subtitlesMarkersToList(subtitleMarkers);
     subtitleMarkers[subtitleMarkers.length - 1].active();
 };
+
+const getMarkersToSrt = (markers) => {
+    let content = "";
+
+    for (let i = 0; i < markers.length; i++) {
+        const start = getMsToFormat(markers[i].start);
+        const end = getMsToFormat(markers[i].end);
+
+        content += `${i + 1}\n${start} --> ${end}\n${markers[i].text}`;
+        if (i < markers.length - 1) content += "\n\n";
+    }
+
+    return content;
+};
