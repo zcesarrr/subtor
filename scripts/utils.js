@@ -273,3 +273,20 @@ const setControlsInfo = (selected) => {
     endInput.value = timersElement[1].textContent || "";
     textEditor.value = textContent === undefined ?  "" : textContent;
 };
+
+const strToMarkers = (content) => {
+    const linesData = content.split('\n\n');
+    let linesParsed = [];
+
+    for (let i = 0; i < linesData.length; i++) {
+        const datas = linesData[i].split('\n');
+        const timestamps = datas[1].split(' --> ');
+
+        addSubMarkerBuffer(formatToMs(timestamps[0]), formatToMs(timestamps[1]), datas[2]);
+    }
+
+    subtitlesMarkersToList(subtitleMarkers);
+    subtitleMarkers[subtitleMarkers.length - 1].active();
+
+    console.log(subtitleMarkers);
+};

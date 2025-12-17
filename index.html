@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <input type="file" id="load-project-input" accept=".sbtr" style="display: none;">
-    <input type="file" id="load-song-input" accept=".mp3" style="display: none;">
+    <input type="file" id="load-project-input" accept=".srt, .json, .txt" style="display: none;">
+    <input type="file" id="load-song-input" accept=".mp3, .wav, .ogg" style="display: none;">
 
     <div id="container">
         <header>
-            <p id="project-name">project_name</p>
+            <input autocomplete="off" type="text" id="project-name" name="project-name">
             <ul id="file-actions">
-                <li><button id="new-project-button">New Project</button></li>
-                <li><button id="load-project-button">Load Project</button></li>
+                <li><button id="new-project-button">Load Audio</button></li>
+                <li><button id="load-project-button">Load Subtitles</button></li>
                 <li><button id="save-button" disabled>Save</button></li>
                 <li><button id="save-as-button" disabled>Save As</button></li>
                 <li><button id="export-button" disabled>Export</button></li>

@@ -48,7 +48,7 @@ loadSongInput.addEventListener("change", (e) => {
 
             audio = new AudioSettings(audioLoaded, duration);
 
-            projectName.textContent = "untitled.sbtr";
+            projectName.value = "untitled";
 
             projectLoaded();
 
@@ -66,7 +66,21 @@ loadProjectButton.addEventListener("click", () => {
 
 loadProjectInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
-    console.log (file);
+    console.log(file);
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+            const text = event.target.result;
+            strToMarkers(text);
+        };
+        
+        reader.onerror = (err) => {
+            console.error(err);
+        };
+        
+        reader.readAsText(file);
+    }
 });
 
 saveButton.addEventListener("click", () => {
@@ -106,6 +120,12 @@ function addSubMarker() {
     
     subtitlesMarkersToList(subtitleMarkers);
     subtitleMarkers[subtitleMarkers.length - 1].active();
+}
+
+function addSubMarkerBuffer(start, end, text) {
+    subtitleMarkers.push(createSubtitleMarker(audioSlider.slider, start, end))
+    subtitleMarkers[subtitleMarkers.length - 1].updateElement(audio.duration);
+    subtitleMarkers[subtitleMarkers.length - 1].text = text;
 }
 
 function playPauseAudio() {
@@ -274,6 +294,17 @@ setupWorkspace();
 let shiftHold = false;
 let ctrlHold = false;
 
+let mouseOnControls = false;
+
+const subtitlesMarkersContainer = document.getElementById("subtitles-markers-container");
+subtitlesMarkersContainer.addEventListener("mouseenter", () => {
+    mouseOnControls = true;
+});
+
+subtitlesMarkersContainer.addEventListener("mouseleave", () => {
+    mouseOnControls = false;
+});
+
 document.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.metaKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
@@ -284,6 +315,7 @@ document.addEventListener("keydown", (e) => {
     if (document.activeElement === textEditor) return;
     if (document.activeElement ===  startInput) return;
     if (document.activeElement ===  endInput) return;
+    if (document.activeElement === projectName) return;
 
     document.activeElement.blur();
 
@@ -398,6 +430,9 @@ document.addEventListener("wheel", (e) => {
     if (document.activeElement === textEditor) return;
     if (document.activeElement ===  startInput) return;
     if (document.activeElement ===  endInput) return;
+    if (document.activeElement ===  projectName) return;
+
+    if (mouseOnControls) return;
 
     function moveDuration(force) {
         if (subtitleMarkers.length <= 0) return;
