@@ -81,7 +81,7 @@ loadProjectInput.addEventListener("change", (e) => {
 exportButton.addEventListener("click", () => {
     const content = (() => {
         switch (filenameExt.value) {
-            case ".str":
+            case ".srt":
                 return getMarkersToSrt(subtitleMarkers);
             case ".json":
                 return getMarkersToJson(subtitleMarkers);

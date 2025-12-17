@@ -322,5 +322,16 @@ const getMarkersToSrt = (markers) => {
 };
 
 const getMarkersToJson = (markers) => {
-    return JSON.stringify(markers);
+    let content = [];
+
+    for (let i = 0; i < markers.length; i++) {
+        content.push({
+            id: i + 1,
+            start: getMsToFormat(markers[i].start),
+            end: getMsToFormat(markers[i].end),
+            text: markers[i].text
+        });
+    }
+
+    return JSON.stringify(content);
 };
