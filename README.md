@@ -1,4 +1,4 @@
-# 🎬 Subtor
+# Subtor
 
 **A lightweight subtitle editor for quick and efficient subtitle creation.**
 
@@ -6,15 +6,15 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎵 Audio Management
+### Audio Management
 - **Audio Loader** with visual timeline system
 - Supports multiple audio formats: `.mp3`, `.wav`, `.ogg`
 - Real-time audio playback with visual progress tracking
 - Precise timeline navigation with keyboard shortcuts
 
-### 📝 Subtitle Management
+### Subtitle Management
 - **Visual Subtitle Markers** on the timeline
 - **Live Subtitle Preview** while audio plays, including text styles (bold, italic, strikethrough)
 - **Collision Detection** prevents overlapping subtitles
@@ -22,7 +22,7 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
 - Text editor with start/end time controls
 - Restore function to revert unsaved changes
 
-### 📁 Import & Export
+### Import & Export
 **Import Formats:**
 - `.srt` (SubRip)
 - `.json` (JSON format)
@@ -35,9 +35,7 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
   - `ms` (Milliseconds)
   - `Normalized` (0-1 values based on the current Audio Duration)
 
----
-
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 ### Subtitle Marker Movement
 - **Q / E** : Move selected marker left/right (500ms)
@@ -58,32 +56,26 @@ Subtor is a simple, browser-based subtitle editor designed for projects that don
 ### Playback Control
 - **Spacebar** : Play/Pause audio
 
----
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Load Audio** : Click "Load Audio" and select your audio file
 2. **Add Markers** : Use `Ctrl + A` or click "Add Marker" to create subtitle points
 3. **Edit Subtitles** : Click markers to edit start/end times and text
 4. **Export** : Choose your format and export when finished
 
----
 
-## 🔮 Future Features
+## Future Features
 
-This editor is designed for simplicity and it's currently a prototype, but some features are planned:
+This editor is designed for simplicity and it's currently a functional prototype, but some features are planned:
 - Undo/Redo functionality (Ctrl + Z)
 - Waveform visualizer for precise timing
 - Zoom in/out timeline for more precision
 
 ---
 
-## 👤 Author
+## License
+This project licensed under the [MIT](https://github.com/zcesarrr/subtor/blob/main/LICENSE) license. View the [source code on GitHub](https://github.com/zcesarrr/subtor).
 
-[**CesarZ**](https://bio.link/cesarz)
-
----
-
-## 📄 License
-
-This project is open source. View the [source code on GitHub](https://github.com/zcesarrr/subtor).
+## Author
+[CesarZ](https://bio.link/cesarz)
