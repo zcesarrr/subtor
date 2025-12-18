@@ -29,6 +29,10 @@
     border-radius: 4px;
 }
 
+.slider-thumb-disabled {
+    background: #4a4a4a;
+}
+
 .slider-thumb:hover {
     background: #f8e45c;
 }

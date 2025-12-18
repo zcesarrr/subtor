@@ -107,12 +107,14 @@ class CustomSlider {
 
     enable() {
         this.slider.style.pointerEvents = "all"
+        this.thumb.classList.remove("slider-thumb-disabled");
 
         this.#enabledColors();
     }
 
     disable() {
         this.slider.style.pointerEvents = "none"
+        this.thumb.classList.add("slider-thumb-disabled");
        
         this.#disabledColors();
     }
@@ -342,23 +344,34 @@ const validateRanges = (start, end) => {
 };
 
 const srtToMarkers = (content) => {
-    const linesData = content.split('\n\n');
+    const normalizedContent = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    
+    const linesData = normalizedContent.split('\n\n');
 
     let markersBuffer = [];
 
     for (let i = 0; i < linesData.length; i++) {
         const datas = linesData[i].split('\n');
+        
+        if (!datas[1]) {
+            continue;
+        }
+        
         const timestamps = datas[1].split(' --> ');
+        
+        if (timestamps.length !== 2) {
+            continue;
+        }
 
-        const start = checkAndGetMs(timestamps[0]);
-        const end = checkAndGetMs(timestamps[1]);
+        const start = checkAndGetMs(timestamps[0].trim());
+        const end = checkAndGetMs(timestamps[1].trim());
 
         if (!validateRanges(start, end)) {
             console.error(`The line #${i + 1} has a timestamp out of the range.`);
             return;
         }
 
-        markersBuffer.push([start, end, datas[2]]);
+        markersBuffer.push([start, end, datas[2] || ""]);
     }
 
     createMarkersByBuffer(markersBuffer);
