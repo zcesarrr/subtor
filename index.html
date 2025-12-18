@@ -13,6 +13,10 @@
     <input type="file" id="load-song-input" accept=".mp3, .wav, .ogg" style="display: none;">
 
     <header>
+        <ul class="top-nav">
+            <li><button id="new-project-button">Load Audio</button></li>
+            <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
+        </ul>
         <div id="filename">
             <input autocomplete="off" type="text" id="project-name" name="project-name">
             <select id="filename-ext">
@@ -27,10 +31,6 @@
             </select>
             <button id="export-button" disabled>Export</button>
         </div>
-        <ul class="top-nav">
-            <li><button id="new-project-button">Load Audio</button></li>
-            <li><button autocomplete="off" disabled id="load-project-button">Load Subtitles</button></li>
-        </ul>
     </header>
 
     <div id="container">

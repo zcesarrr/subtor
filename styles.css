@@ -94,7 +94,6 @@ body {
 #filename {
     display: flex;
     gap: 4px;
-    margin-bottom: 8px;
 }
 
 #filename-ext {
@@ -123,6 +122,9 @@ main {
 }
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: #0e0e0e;
     padding: 16px;
     margin-bottom: 92px;
