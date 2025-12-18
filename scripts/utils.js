@@ -35,11 +35,9 @@ class CustomSlider {
     #onUpdate;
     #onMove;
     #enabledColors = () => {
-        this.slider.querySelector(".slider-track").style.background = "#3f3e3e";
         this.slider.querySelector("#guide-thumb").style.opacity = "100%";
     }
     #disabledColors = () => {
-        this.slider.querySelector(".slider-track").style.background = "#222";
         this.slider.querySelector("#guide-thumb").style.opacity = "0%";
     }
     
@@ -102,12 +100,14 @@ class CustomSlider {
         const percent = this.getPercent(clientX);
 
         this.thumb.style.left = `${percent * 100}%`;
+        this.slider.querySelector(".slider-track").style.background = `linear-gradient(90deg, #fff ${percent * 100}%, #3e3e3e 0%)`;
         this.#onUpdate(percent);
     };
 
     enable() {
         this.slider.style.pointerEvents = "all"
         this.thumb.classList.remove("slider-thumb-disabled");
+        this.slider.querySelector(".slider-track").classList.remove("slider-track-disabled");
 
         this.#enabledColors();
     }
@@ -115,6 +115,7 @@ class CustomSlider {
     disable() {
         this.slider.style.pointerEvents = "none"
         this.thumb.classList.add("slider-thumb-disabled");
+        this.slider.querySelector(".slider-track").classList.add("slider-track-disabled");
        
         this.#disabledColors();
     }
