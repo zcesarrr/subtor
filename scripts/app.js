@@ -43,14 +43,21 @@ newProjectButton.addEventListener("click", () => {
     loadSongInput.click();
 });
 
+let currentAudioBlobURL = null;
+
 loadSongInput.addEventListener("change", (e) => {
     if (audio) audio.element.pause();
+
+    if (currentAudioBlobURL) {
+        URL.revokeObjectURL(currentAudioBlobURL);
+    }
 
     const file = e.target.files[0];
     console.log (file);
 
     if (file) {
         const fileURL = URL.createObjectURL(file);
+        currentAudioBlobURL = fileURL;
         const audioLoaded = document.createElement('audio');
 
         audioLoaded.addEventListener("loadedmetadata", () => {
@@ -61,12 +68,16 @@ loadSongInput.addEventListener("change", (e) => {
             projectName.value = "untitled";
 
             projectLoaded();
-
-            URL.revokeObjectURL(fileURL);
         });
 
         audioLoaded.src = fileURL;
         audioLoaded.preload = 'metadata';
+    }
+});
+
+window.addEventListener('beforeunload', () => {
+    if (currentAudioBlobURL) {
+        URL.revokeObjectURL(currentAudioBlobURL);
     }
 });
 
