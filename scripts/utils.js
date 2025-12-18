@@ -410,28 +410,32 @@ const getCountMethod = (value) => {
 };
 
 const getMarkersToSrt = (markers) => {
+    const markersSorted = [...markers].sort((a, b) => a.start - b.start);
+
     let content = "";
 
-    for (let i = 0; i < markers.length; i++) {
-        const start = getMsToFormat(markers[i].start);
-        const end = getMsToFormat(markers[i].end);
+    for (let i = 0; i < markersSorted.length; i++) {
+        const start = getMsToFormat(markersSorted[i].start);
+        const end = getMsToFormat(markersSorted[i].end);
 
-        content += `${i + 1}\n${start} --> ${end}\n${markers[i].text}`;
-        if (i < markers.length - 1) content += "\n\n";
+        content += `${i + 1}\n${start} --> ${end}\n${markersSorted[i].text}`;
+        if (i < markersSorted.length - 1) content += "\n\n";
     }
 
     return content;
 };
 
 const getMarkersToJson = (markers) => {
+    const markersSorted = [...markers].sort((a, b) => a.start - b.start);
+
     let content = [];
 
-    for (let i = 0; i < markers.length; i++) {
+    for (let i = 0; i < markersSorted.length; i++) {
         content.push({
             id: i + 1,
-            start: getCountMethod(markers[i].start),
-            end: getCountMethod(markers[i].end),
-            text: markers[i].text
+            start: getCountMethod(markersSorted[i].start),
+            end: getCountMethod(markersSorted[i].end),
+            text: markersSorted[i].text
         });
     }
 
@@ -439,14 +443,16 @@ const getMarkersToJson = (markers) => {
 };
 
 const getMarkersToTxt = (markers) => {
+    const markersSorted = [...markers].sort((a, b) => a.start - b.start);
+
     let content = "";
 
-    for (let i = 0; i < markers.length; i++) {
-        const start = getCountMethod(markers[i].start);
-        const end = getCountMethod(markers[i].end);
+    for (let i = 0; i < markersSorted.length; i++) {
+        const start = getCountMethod(markersSorted[i].start);
+        const end = getCountMethod(markersSorted[i].end);
 
-        content += `${i+1}|${start}|${end}|${markers[i].text}`;
-        if (i < markers.length - 1) content += "\n";
+        content += `${i+1}|${start}|${end}|${markersSorted[i].text}`;
+        if (i < markersSorted.length - 1) content += "\n";
     }
 
     return content;
