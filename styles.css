@@ -200,14 +200,14 @@ header {
     cursor: pointer;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 24px solid greenyellow;
+    border-bottom: 24px solid #f8e45c;
     background: transparent;
     border-bottom-left-radius: 3px ;
     border-bottom-right-radius: 3px ;
 }
 
 .sub-marker-unfinished {
-    border-bottom-color: orange;
+    border-bottom-color: #4a4a4a;
 }
 
 .sub-marker-active {
@@ -221,7 +221,7 @@ header {
     width: 32px;
     height: 1px;
     left: 0;
-    top: 36px;
+    top: 37px;
     pointer-events: none;
     z-index: -4;
 }
