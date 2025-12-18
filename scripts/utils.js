@@ -134,6 +134,12 @@ class SubtitleMarker {
         this.element.addEventListener("click", () => {
             this.active();
         });
+
+        this.element.addEventListener("dblclick", () => {
+            audio.element.currentTime = this.start / 1000;
+            const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (audio.element.currentTime * 1000 / audio.duration);
+            audioSlider.updateThumb(clientX);
+        });
     }
 
     updateElement(targetDuration) {
@@ -240,6 +246,14 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
 
         subMarkerItem.addEventListener("click", () => {
             subtitleMarkers.find(sub => sub.id === subtitleMarkersSorted[i].id).active();
+        });
+
+        subMarkerItem.addEventListener("dblclick", (e) => {
+            const selected = subtitleMarkers.find(sub => sub.id === subtitleMarkersSorted[i].id);
+
+            audio.element.currentTime = selected.start / 1000;
+            const clientX = audioSlider.getSliderOffset() + audioSlider.getSliderWidth() * (audio.element.currentTime * 1000 / audio.duration);
+            audioSlider.updateThumb(clientX);
         });
 
         subMarkersList.appendChild(subMarkerItem);
