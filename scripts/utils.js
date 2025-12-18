@@ -346,16 +346,13 @@ const validateRanges = (start, end) => {
 
 const srtToMarkers = (content) => {
     const normalizedContent = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    console.log(normalizedContent);
     
     const linesData = normalizedContent.split('\n\n');
-    console.log(linesData);
 
     let markersBuffer = [];
 
     for (let i = 0; i < linesData.length; i++) {
         const datas = linesData[i].split('\n');
-        console.log(datas);
         
         if (!datas[1]) {
             continue;
@@ -375,17 +372,15 @@ const srtToMarkers = (content) => {
             return;
         }
 
-        let text = datas[2];
-
+        let text = "";
         if (datas.length > 2) {
-            text += "\n";
-            for (let j = 3; j < datas.length; j++) {
+            for (let j = 2; j < datas.length; j++) {
                 text += datas[j];
                 if (j < datas.length - 1) text += "\n";
             }
         }
 
-        markersBuffer.push([start, end, text || ""]);
+        markersBuffer.push([start, end, text]);
     }
 
     createMarkersByBuffer(markersBuffer);
@@ -422,14 +417,16 @@ const psvToMarkers = (content) => {
 
         const start = checkAndGetMs(line[1]);
         const end = checkAndGetMs(line[2]);
-        const text = line[3];
+        const text = line[3] || "";
 
         if (!validateRanges(start, end)) {
             console.error(`The line #${i + 1} has a timestamp out of the range.`);
             return;
         }
 
-        markersBuffer.push([start, end, text]);
+        const textContent = text.replace(/\\n/g, '\n');
+
+        markersBuffer.push([start, end, textContent]);
     }
 
     createMarkersByBuffer(markersBuffer);
@@ -490,7 +487,10 @@ const getMarkersToTxt = (markers) => {
         const start = getCountMethod(markersSorted[i].start);
         const end = getCountMethod(markersSorted[i].end);
 
-        content += `${i+1}|${start}|${end}|${markersSorted[i].text}`;
+        const textContent = markersSorted[i].text || "";
+        const text = textContent.replace(/\n/g, '\\n');
+
+        content += `${i+1}|${start}|${end}|${text}`;
         if (i < markersSorted.length - 1) content += "\n";
     }
 
