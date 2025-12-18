@@ -4,6 +4,8 @@
 
 Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for game engines, video editors, content creators, and anyone who needs to create subtitles quickly without the overhead of professional tools.
 
+Chrome has some drift and desync problems when importing audio and subtitles pre-configured from other sites. However, Firefox appears to be stable.
+
 ---
 
 ## Features
