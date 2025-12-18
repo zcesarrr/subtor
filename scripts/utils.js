@@ -36,12 +36,10 @@ class CustomSlider {
     #onMove;
     #enabledColors = () => {
         this.slider.querySelector(".slider-track").style.background = "#3f3e3e";
-        this.slider.querySelector(".slider-thumb").style.background = "red";
         this.slider.querySelector("#guide-thumb").style.opacity = "100%";
     }
     #disabledColors = () => {
         this.slider.querySelector(".slider-track").style.background = "#222";
-        this.slider.querySelector(".slider-thumb").style.background = "#444";
         this.slider.querySelector("#guide-thumb").style.opacity = "0%";
     }
     

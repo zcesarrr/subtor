@@ -5,6 +5,7 @@
     width: 300px;
     height: 6px;
     user-select: none;
+    border-radius: 12px;
 }
 
 .slider-track {
@@ -13,6 +14,7 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+    border-radius: 12px;
 }
 
 .slider-thumb {
@@ -24,6 +26,15 @@
     left: 0;
     transform: translate(-50%, -50%);
     cursor: grab;
+    border-radius: 4px;
+}
+
+.slider-thumb:hover {
+    background: #f8e45c;
+}
+
+.slider-thumb:active {
+    background: white;
 }
 
 .slider-thumb:active {
@@ -32,10 +43,45 @@
 
 /* ^^^ Custom Slider Style ^^^ */
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+input, select {
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+input:focus {
+    outline: 2px solid white;
+}
+
 button {
+    background: #2a2a2a;
     border-radius: 4px;
     border: none;
-    padding: 4px 8px;
+    padding: 4px 12px;
+    color: white;
+    border-radius: 999px;
+}
+
+button:not(:disabled):hover {
+    background: #4a4a4a;
+    outline: 2px solid white;
+}
+
+button:not(:disabled):active {
+    background: white;
+    color: #3a3a3a;
+    outline: unset;
+}
+
+button:disabled {
+    background: #1e1e1e;
+    color: #3e3e3e;
 }
 
 body {
@@ -89,6 +135,7 @@ header {
     align-items: center;
     box-sizing: border-box;
     user-select: none;
+    border-radius: 12px;
 }
 
 #audio-slider-controls {
@@ -134,12 +181,12 @@ header {
 
 #guide-thumb {
     position: absolute;
-    background: rgba(155, 210, 255, 0.5);
+    background: rgba(155, 210, 255, 0.35);
     height: 48px;
     width: 1px;
     z-index: -999;
     top: 36px;
-    left: 50%;
+    left: 45%;
     pointer-events: none;
 }
 
@@ -155,6 +202,8 @@ header {
     border-right: 6px solid transparent;
     border-bottom: 24px solid greenyellow;
     background: transparent;
+    border-bottom-left-radius: 3px ;
+    border-bottom-right-radius: 3px ;
 }
 
 .sub-marker-unfinished {
@@ -187,6 +236,7 @@ header {
     max-height: 300px;
     box-sizing: border-box;
     padding: 12px;
+    border-radius: 12px;
 }
 
 #subtitles-markers-controls {
@@ -298,6 +348,10 @@ footer {
     text-underline-offset:2px;
 }
 
+#source-code:hover {
+    color: #f8e45c;
+}
+
 #app-title {
     font-size: 18px;
     justify-self: center;
@@ -331,4 +385,8 @@ footer {
     margin: 0;
     padding: 0;
     filter: invert(100%) sepia(99%) saturate(0%) hue-rotate(231deg) brightness(107%) contrast(100%);
+}
+
+.creator-social:hover {
+    filter: brightness(0) saturate(100%) invert(79%) sepia(46%) saturate(719%) hue-rotate(357deg) brightness(104%) contrast(93%);
 }
