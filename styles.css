@@ -33,18 +33,16 @@
 /* ^^^ Custom Slider Style ^^^ */
 
 button {
-    background: #EB5E28;
     border-radius: 4px;
     border: none;
     padding: 4px 8px;
-    color: #252422;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: #FFFCF2;
-    color: #252422;
+    background: #1a1a1a;
+    color: white;
 }
 
 #filename {
@@ -79,13 +77,13 @@ main {
 }
 
 header {
-    background: #CCC5B9;
+    background: #0e0e0e;
     padding: 16px;
-    margin-bottom: 128px;
+    margin-bottom: 92px;
 }
 
 #audio-slider-container {
-    background: #CCC5B9;
+    background: #0e0e0e;
     width: 100%;
     padding: 16px;
     align-items: center;
@@ -181,7 +179,7 @@ header {
     display: grid;
     grid-template-columns: 60% auto;
     gap: 12px;
-    background: #CCC5B9;
+    background: #0e0e0e;
     margin-bottom: 12px;
     min-height: 300px;
     max-height: 300px;
@@ -227,7 +225,7 @@ header {
 .list-subtitle-timer {
     cursor: pointer;
     height: 100%;
-    color: #403D39;
+    color: rgb(153, 153, 153);
 }
 
 .list-subtitle-text {
@@ -245,7 +243,7 @@ header {
 }
 
 .list-subtitle-active {
-    background: #EB5E28;
+    background: #212121;
     animation: subItemActivated 0.5s;
 }
 
@@ -265,7 +263,7 @@ header {
 }
 
 #subtitles-viewer {
-    background: #CCC5B9;
+    background: #0e0e0e;
     margin-top: 64px;
     text-align: center;
     padding: 8px;
@@ -284,7 +282,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 64px;
-    background: #CCC5B9;
+    background: #0e0e0e;
     align-items: center;
     text-align: center;
     box-sizing: border-box;
@@ -294,7 +292,7 @@ footer {
 #source-code {
     font-size: 14px;
     justify-self: flex-start;
-    color: #252422;
+    color: white;
     text-underline-offset:2px;
 }
 
@@ -330,5 +328,5 @@ footer {
     height: 24px;
     margin: 0;
     padding: 0;
-    filter: invert(8%) sepia(3%) saturate(1527%) hue-rotate(2deg) brightness(100%) contrast(86%);
+    filter: invert(100%) sepia(99%) saturate(0%) hue-rotate(231deg) brightness(107%) contrast(100%);
 }
