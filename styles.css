@@ -301,6 +301,7 @@ header {
     display: flex;
     gap: 6px;
     margin-bottom: 6px;
+    padding: 0 6px;
 }
 
 #subtitles-markers-list li p {
