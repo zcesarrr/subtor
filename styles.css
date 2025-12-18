@@ -354,6 +354,12 @@ header {
     margin-bottom: 12px;
 }
 
+#text-editor {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
 #timers-controls {
     display: flex;
     gap: 8px;

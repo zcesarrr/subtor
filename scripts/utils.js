@@ -242,7 +242,7 @@ const subtitlesMarkersToList = (subtitleMarkers) => {
             <p>-</p>
             <p class="list-subtitle-timer">${getMsToFormat(subtitleMarkersSorted[i].end)}</p>
             <p>:</p>
-            <p class="list-subtitle-text">${subtitleMarkersSorted[i].text || ""}</p>
+            <p class="list-subtitle-text">${(subtitleMarkersSorted[i].text || "").replace(/\n/g, '<br>')}</p>
         `;
 
         subMarkerItem.addEventListener("click", () => {
@@ -292,7 +292,7 @@ const setControlsInfo = (selected) => {
 
     startInput.value = timersElement[0].textContent || "";
     endInput.value = timersElement[1].textContent || "";
-    textEditor.value = textContent === undefined ?  "" : textContent;
+    textEditor.value = textContent === undefined ? "" : textContent.replace(/<br>/g, '\n');
 };
 
 const checkAndGetMs = (value) => {
@@ -346,13 +346,16 @@ const validateRanges = (start, end) => {
 
 const srtToMarkers = (content) => {
     const normalizedContent = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    console.log(normalizedContent);
     
     const linesData = normalizedContent.split('\n\n');
+    console.log(linesData);
 
     let markersBuffer = [];
 
     for (let i = 0; i < linesData.length; i++) {
         const datas = linesData[i].split('\n');
+        console.log(datas);
         
         if (!datas[1]) {
             continue;
@@ -372,7 +375,17 @@ const srtToMarkers = (content) => {
             return;
         }
 
-        markersBuffer.push([start, end, datas[2] || ""]);
+        let text = datas[2];
+
+        if (datas.length > 2) {
+            text += "\n";
+            for (let j = 3; j < datas.length; j++) {
+                text += datas[j];
+                if (j < datas.length - 1) text += "\n";
+            }
+        }
+
+        markersBuffer.push([start, end, text || ""]);
     }
 
     createMarkersByBuffer(markersBuffer);

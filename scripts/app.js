@@ -207,7 +207,7 @@ const checkInterval = setInterval(() => {
         if (selectedSub) {
             if (currentText != selectedSub.text) {
                 currentText = selectedSub.text;
-                subtitleViewerText.innerHTML = currentText;
+                subtitleViewerText.innerHTML = currentText.replace(/\n/g, '<br>');
 
                 if (subtitleViewerText.parentElement.style.opacity !== "100%") {
                     subtitleViewerText.parentElement.style.opacity = "100%";
