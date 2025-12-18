@@ -145,32 +145,34 @@ header {
 
 .sub-marker {
     position: absolute;
-    background: greenyellow;
-    width: 3px;
-    height: 24px;
+    width: 0;
+    height: 0;
     left: 0;
-    top: 32px;
+    top: 36px;
     transform: translateX(-50%);
     cursor: pointer;
-    z-index: -5;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 24px solid greenyellow;
+    background: transparent;
 }
 
 .sub-marker-unfinished {
-    background: orange;
+    border-bottom-color: orange;
 }
 
 .sub-marker-active {
-    background: white;
-    outline: 2px solid rgb(172, 172, 172);
+    border-bottom-color: white;
+    
 }
 
 .duration-guide {
     position: absolute;
     background: rgb(0, 255, 234);
     width: 32px;
-    height: 2px;
+    height: 1px;
     left: 0;
-    top: 42px;
+    top: 36px;
     pointer-events: none;
     z-index: -4;
 }
@@ -238,12 +240,12 @@ header {
     }
 
     100% {
-        background: rgb(68, 65, 65);
+        background: #3f3e3e;
     }
 }
 
 .list-subtitle-active {
-    background: #212121;
+    background: #3f3e3e;
     animation: subItemActivated 0.5s;
 }
 

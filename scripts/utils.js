@@ -35,7 +35,7 @@ class CustomSlider {
     #onUpdate;
     #onMove;
     #enabledColors = () => {
-        this.slider.querySelector(".slider-track").style.background = "#ddd";
+        this.slider.querySelector(".slider-track").style.background = "#3f3e3e";
         this.slider.querySelector(".slider-thumb").style.background = "red";
         this.slider.querySelector("#guide-thumb").style.opacity = "100%";
     }
