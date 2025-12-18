@@ -77,6 +77,11 @@ input:focus {
     outline: 2px solid white;
 }
 
+input:disabled {
+    background: #1a1a1a;
+    color: #444;
+}
+
 button {
     background: #2a2a2a;
     border-radius: 4px;
@@ -355,9 +360,28 @@ header {
 }
 
 #text-editor {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #2a2a2a;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 12px;
+    resize: none;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 6px 6px;
+    font-size: 12px;
+    transition: border-radius 0.25s;
+}
+
+#text-editor:focus {
+    border-radius: 12px;
+    outline: 2px solid white;
+}
+
+#text-editor:disabled {
+    background: #1a1a1a;
+    color: #444;
 }
 
 #timers-controls {
