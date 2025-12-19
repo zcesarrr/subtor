@@ -1,4 +1,4 @@
-# Subtor v0.1.0
+# [Subtor v0.1.0](https://zcesarrr.github.io/subtor/)
 
 **A lightweight subtitle editor for quick and efficient subtitle creation.**
 
