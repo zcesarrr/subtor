@@ -4,7 +4,7 @@
 
 Subtor is a simple, browser-based subtitle editor designed for projects that don't require complex subtitle systems. Perfect for game engines, video editors, content creators, and anyone who needs to create subtitles quickly without the overhead of professional tools.
 
-⚠️ Warning: This editor currently has some sync drifting issues. However, you can still create subtitles by setting the audio position manually.
+⚠️ Warning: This editor currently has some sync drifting issues. However, you can still create subtitles by setting the audio position manually. Also there're some desync issues when importing subtitles that was exported from other browsers.
 
 ---
 
@@ -74,6 +74,7 @@ This editor is designed for simplicity and it's currently a functional prototype
 - Undo/Redo functionality (Ctrl + Z)
 - Waveform visualizer for precise timing
 - Zoom in/out timeline for more precision
+- Audio offset setting
 
 ---
 
