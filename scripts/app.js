@@ -177,8 +177,10 @@ function addSubMarkerBuffer(start, end, text) {
 
 function playPauseAudio() {
     if (audio.element.paused) {
+        audioPlayPauseButton.querySelector("img").src = "./icons/pause.svg";
         audio.element.play()
     } else {
+        audioPlayPauseButton.querySelector("img").src = "./icons/play.svg";
         audio.element.pause();
     }
 }
