@@ -18,7 +18,7 @@ Chrome has some drift and desync problems when importing audio and subtitles pre
 
 ### Subtitle Management
 - **Visual Subtitle Markers** on the timeline
-- **Live Subtitle Preview** while audio plays, including multilines and text styles (bold, italic, strikethrough)
+- **Live Subtitle Preview** while audio plays, including multi-lines and text styles (bold, italic, strikethrough)
 - **Collision Detection** prevents overlapping subtitles
 - Interactive subtitle list with quick navigation
 - Subtitle navigation by double click on items 
