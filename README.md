@@ -1,4 +1,4 @@
-# Subtor
+# Subtor v0.1.0
 
 **A lightweight subtitle editor for quick and efficient subtitle creation.**
 
